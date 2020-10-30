@@ -1,0 +1,18 @@
+<div class="list-menu-header">
+  <button
+    mat-icon-button
+    [ngClass]="{'hidden': !showMainMenu}"
+    (click)="onShowMainMenu($event)">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <div
+    class="list-menu-header__title"
+    (click)="$event.stopPropagation()">
+    {{ menuTitle }}
+  </div>
+  <button
+    mat-icon-button
+    (click)="onCloseMenu($event)">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>

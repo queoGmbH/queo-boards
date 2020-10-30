@@ -1,0 +1,15 @@
+.board-team {
+  align-items: center;
+  display: flex;
+
+  &__info {
+    background-color: #eee;
+    flex: 1 1 auto;
+    padding: 0 8px;
+    text-align: left;
+  }
+
+  &__remove {
+    margin-left: 8px;
+  }
+}

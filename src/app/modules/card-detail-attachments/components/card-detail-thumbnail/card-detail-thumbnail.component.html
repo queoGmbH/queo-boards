@@ -1,0 +1,22 @@
+<div class="thumbnail">
+  <div
+    class="thumbnail__img"
+    [style.background-image]="thumbnailStyle"
+    (click)="download()">
+  </div>
+
+  <div
+    class="thumbnail__info"
+    title="{{ thumbnail?.originalFileName }}">
+    <span>{{ thumbnail?.originalFileName }}</span>
+  </div>
+
+  <button
+    mat-button
+    class="delete"
+    type="button"
+    title="Anhang löschen"
+    (click)="removeCardDetailAttachement()">
+    <mat-icon>clear</mat-icon>
+  </button>
+</div>

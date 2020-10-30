@@ -1,0 +1,32 @@
+.card-detail-description {
+  /*padding-top: 16px;*/
+
+  &__title {
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  .description {
+    background-color: #eee;
+    line-height: 20px;
+    padding: 9px 8px;
+    text-align: left;
+    width: 100%;
+    font-weight: 400;
+
+    &__content {
+      hyphens: auto;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      white-space: normal;
+    }
+  }
+
+  .buttons-description {
+    margin-top: 4px;
+  }
+
+  textarea {
+    resize: none;
+  }
+}

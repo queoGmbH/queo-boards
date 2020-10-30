@@ -1,0 +1,98 @@
+<mat-toolbar>
+  <div
+    *ngIf="!isAuthAvailable"
+    class="logo" >
+    <img src="assets/images/queo-logo-status-queo-rgb-pos.svg" alt="logo">
+  </div>
+
+  <a
+    *ngIf="isAuthAvailable"
+    class="logo"
+    [routerLink]="['/']">
+    <img src="assets/images/queo-logo-status-queo-rgb-pos.svg" alt="logo">
+  </a>
+
+  <div class="flex-stretch"></div>
+
+  <div class="items">
+    <div
+      *ngIf="isAuthAvailable">
+      <boards-search></boards-search>
+    </div>
+
+    <nav
+      *ngIf="isAuthAvailable"
+      class="navigation">
+      <div
+        *ngIf="showTeams">
+        <a
+          mat-button
+          class="hidden-xs-down"
+          [routerLink]="['/teams']">
+          <mat-icon>group</mat-icon>
+          <span>Teams</span>
+        </a>
+        <a
+          mat-icon-button
+          class="hidden-sm-up"
+          [routerLink]="['/teams']">
+          <mat-icon>group</mat-icon>
+        </a>
+      </div>
+
+      <div>
+        <a
+          mat-button
+          class="hidden-xs-down"
+          [routerLink]="['/boards']">
+          <mat-icon>view_agenda</mat-icon>
+          <span>Boards</span>
+        </a>
+        <a
+          mat-icon-button
+          class="hidden-sm-up"
+          [routerLink]="['/boards']">
+          <mat-icon>view_agenda</mat-icon>
+        </a>
+      </div>
+
+      <div *ngIf="(currentUser$ | async)?.roles.includes(BOARDS_ADMIN)">
+        <a
+          mat-icon-button
+          [routerLink]="['/user-management']">
+          <mat-icon>
+            person_add
+          </mat-icon>
+        </a>
+      </div>
+
+      <div>
+        <button
+          mat-icon-button
+          [matMenuTriggerFor]="userMenu">
+          <mat-icon>face</mat-icon>
+        </button>
+        <mat-menu
+          #userMenu="matMenu"
+          [overlapTrigger]="false">
+          <a
+            mat-menu-item
+            [routerLink]="['/user/profile']">
+            <span>Profil</span>
+          </a>
+          <button
+            mat-menu-item
+            (click)="openHelpDialog()">
+            Hilfe
+          </button>
+          <button
+            mat-menu-item
+            (click)="logout()">
+            <span>Logout</span>
+          </button>
+        </mat-menu>
+      </div>
+    </nav>
+
+  </div>
+</mat-toolbar>

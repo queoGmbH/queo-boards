@@ -1,0 +1,20 @@
+<form
+  *ngIf="(boardTemplates$ | async).length > 0"
+  class="template-select">
+  <mat-form-field>
+    <mat-label>Vorlage verwenden...</mat-label>
+    <mat-select
+      class="template-select__select"
+      name="template"
+      (change)="onTemplateSelect($event)"
+      [(ngModel)]="selectedTemplate">
+      <mat-option>Keine Vorlage verwenden</mat-option>
+      <mat-option
+        *ngFor="let template of boardTemplates$ | async"
+        [value]="template">
+        {{ template.title }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>
+

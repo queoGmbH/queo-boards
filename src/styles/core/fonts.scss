@@ -1,0 +1,131 @@
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Roboto Light'), local('Roboto-Light'),
+  url('./assets/fonts/roboto-v18-latin-300.woff2') format('woff2'),
+  url('./assets/fonts/roboto-v18-latin-300.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto'), local('Roboto-Regular'),
+  url('./assets/fonts/roboto-v18-latin-regular.woff2') format('woff2'),
+  url('./assets/fonts/roboto-v18-latin-regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Roboto Medium'), local('Roboto-Medium'),
+  url('./assets/fonts/roboto-v18-latin-500.woff2') format('woff2'),
+  url('./assets/fonts/roboto-v18-latin-500.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Mono'), local('RobotoMono-Regular'),
+  url('./assets/fonts/roboto-mono-v5-latin-regular.woff2') format('woff2'),
+  url('./assets/fonts/roboto-mono-v5-latin-regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Material Icons'), local('MaterialIcons-Regular'),
+  url('./assets/fonts/material-icons-regular.woff2') format('woff2'),
+  url('./assets/fonts/material-icons-regular.woff') format('woff');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+
+  &.mat-18 {
+    font-size: 18px;
+  }
+
+  // &.md-24 { font-size: 24px; }
+
+  &.mat-36 {
+    font-size: 36px;
+  }
+
+  &.mat-48 {
+    font-size: 48px;
+  }
+
+  &.mat-dark {
+    color: rgba(0, 0, 0, 0.54);
+
+    &--dimmed {
+      color: rgba(0, 0, 0, 0.26);
+
+      &:hover {
+        color: rgba(0, 0, 0, 0.54);
+      }
+    }
+
+  }
+
+  &.mat-dark.mat-inactive {
+    color: rgba(0, 0, 0, 0.26);
+  }
+
+  &.mat-light {
+    color: rgba(255, 255, 255, 1);
+  }
+
+  &.mat-light.md-inactive {
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  &.mat-green {
+    color: #009036;
+  }
+
+  // todo: for what?
+  &.mat-green.md-inactive {
+    color: rgba(#009036, 1);
+  }
+}
+
+button {
+
+  &.mat-dark {
+    color: rgba(0, 0, 0, 0.54);
+
+    &--dimmed {
+      color: rgba(0, 0, 0, 0.26);
+
+      &:hover {
+        color: rgba(0, 0, 0, 0.54);
+      }
+    }
+
+  }
+}

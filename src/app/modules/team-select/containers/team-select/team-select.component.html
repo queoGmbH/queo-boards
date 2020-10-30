@@ -1,0 +1,29 @@
+<form
+  [formGroup]="teamForm"
+  class="team-select">
+  <mat-form-field
+    floatPlaceholder="never"
+    [hideRequiredMarker]="true">
+    <mat-select
+      placeholder="Team hinzufügen"
+      formControlName="team">
+      <mat-option>Kein Team</mat-option>
+      <mat-option
+        *ngFor="let team of teams$ | async"
+        [value]="team">
+        {{ team.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="team-select__add">
+    <button
+      mat-raised-button
+      color="primary"
+      type="button"
+      [disabled]="!selectedTeam"
+      (click)="addTeam()">
+      Team hinzufügen
+    </button>
+  </div>
+</form>

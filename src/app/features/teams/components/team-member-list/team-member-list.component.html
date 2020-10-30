@@ -1,0 +1,20 @@
+<ul
+  *ngIf="members?.length > 0"
+  class="team-members">
+  <li *ngFor="let member of members">
+    <div class="team-members__name">
+      {{ member | userName }}
+    </div>
+    <div class="team-members__actions">
+      <button
+        class="square-button"
+        mat-button
+        matTooltip="Mitglied löschen..."
+        (click)="onRemoveMember(member)">
+        <mat-icon>
+          delete
+        </mat-icon>
+      </button>
+    </div>
+  </li>
+</ul>

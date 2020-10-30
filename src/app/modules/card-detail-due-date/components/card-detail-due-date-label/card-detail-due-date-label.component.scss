@@ -1,0 +1,85 @@
+:host {
+  display: block;
+}
+
+.due-date-label {
+  margin-top: 16px;
+  border-radius: 2px;
+
+  &__time {
+    cursor: pointer;
+
+    &.warning {
+      background-color: #ff9800;
+      color: white;
+
+      mat-icon {
+        color: white
+      }
+    }
+
+    &.critical {
+      background-color: #f44336;
+      color: white;
+
+      mat-icon {
+        color: white
+      }
+    }
+  }
+
+  &__title {
+    display: inline-block;
+    margin-right: 4px;
+  }
+
+  &--card {
+    margin-left: 0;
+    margin-top: 0;
+
+    .due-date-label__time {
+      align-items: center;
+      background-color: transparent;
+      display: inline-flex;
+      font-size: 14px;
+      padding: 4px;
+
+      &.warning {
+        background-color: #ff9800;
+        color: white;
+
+        mat-icon {
+          color: white
+        }
+      }
+
+      &.critical {
+        background-color: #f44336;
+        color: white;
+
+        mat-icon {
+          color: white
+        }
+      }
+
+      mat-icon {
+        margin-right: 4px;
+      }
+
+      button {
+        display: none;
+      }
+    }
+  }
+
+  &__time {
+    background-color: #eee;
+    border-radius: 2px;
+    display: inline-block;
+    padding: 8px;
+
+    button {
+      margin: -10px -10px -10px -4px;
+    }
+  }
+}

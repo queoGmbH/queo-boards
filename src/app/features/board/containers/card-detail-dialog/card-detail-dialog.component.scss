@@ -1,0 +1,117 @@
+@import "~bootstrap/scss/mixins";
+@import "../../../../../styles/variables";
+
+.dialog {
+
+  &__header {
+    justify-content: flex-end;
+  }
+
+  &__content {
+    position: relative;
+  }
+}
+
+.title-form {
+  align-items: center;
+  display: flex;
+  flex: 1 1 auto;
+
+  > input {
+    font-size: 24px;
+  }
+}
+
+.list-title {
+  color: map-get($boards-grey, 600);
+  margin-bottom: 16px;
+}
+
+.card-detail__description {
+  padding-top: 16px;
+
+  .description-title {
+    font-weight: 500;
+  }
+
+  .form-control {
+    padding: 9px 0;
+  }
+
+  .form-control:focus,
+  .form-control:hover {
+    padding: 9px 8px;
+  }
+}
+.menu-title {
+  min-width: 210px;
+  flex: 1 1 auto;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+  padding: 10px 0;
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  justify-content: flex-end;
+  &--text
+  {
+    width: 70%
+  }
+}
+.buttons-description {
+  margin-top: 8px;
+}
+
+form + form {
+  margin-top: 8px;
+}
+
+input,
+textarea {
+  border-color: transparent;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:focus {
+    background-color: $input-bg;
+    border-color: $input-border-color;
+    cursor: text;
+  }
+}
+
+textarea {
+  resize: none;
+}
+
+.menu-header {
+  padding: 8px;
+}
+
+.content-header {
+
+  &__labels {
+
+    @include media-breakpoint-down(xs) {
+      margin-top: 16px;
+    }
+    @include media-breakpoint-up(sm) {
+      width: 40%;
+    }
+  }
+}
+
+.card-title {
+  font-size: 20px;
+  font-weight: 500;
+  resize: none;
+}
+
+boards-copy-actions,
+boards-move-actions {
+  padding: 0 16px;
+  display: block;
+}

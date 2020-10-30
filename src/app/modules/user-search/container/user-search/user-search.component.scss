@@ -1,0 +1,19 @@
+.members-menu {
+
+  &__search {
+
+    input {
+      border: none;
+    }
+
+    .form-control {
+      padding-bottom: 13px;
+      padding-top: 13px;
+    }
+  }
+
+  &__result {
+    max-height: 3 * 48px;
+    overflow-y: auto;
+  }
+}

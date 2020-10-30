@@ -1,0 +1,10 @@
+.page-not-found {
+  flex: 1 1 auto;
+  padding: 16px 8px;
+  position: relative;
+  // overflow: scroll;
+
+  @media (min-width: 600px) {
+    padding: 16px;
+  }
+}

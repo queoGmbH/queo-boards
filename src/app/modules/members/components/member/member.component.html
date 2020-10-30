@@ -1,0 +1,37 @@
+<!--show member with no remove for either me or when we can't remove-->
+<div
+  *ngIf="!canRemove || me"
+  class="member square-button member--no-button"
+  [matTooltip]="member | userName">
+  {{ member | userInitials }}
+</div>
+
+<!--show member with remove if we can and if we are not ourselves-->
+<div *ngIf="canRemove && !me">
+  <button
+    mat-button
+    class="member square-button"
+    [matTooltip]="member | userName"
+    [matMenuTriggerFor]="memberEditMenu">
+    {{ member | userInitials }}
+  </button>
+
+  <mat-menu
+    #memberEditMenu
+    class="member-edit"
+    [overlapTrigger]="false">
+    <div class="member-edit__title">
+      {{ member | userName }}
+    </div>
+    <div class="member-edit__actions">
+      <button
+        mat-raised-button
+        color="warn"
+        [disabled]="owners?.length === 1"
+        (click)="onRemoveMember(member)">
+        Löschen?
+      </button>
+    </div>
+  </mat-menu>
+</div>
+

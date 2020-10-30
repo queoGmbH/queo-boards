@@ -1,0 +1,79 @@
+.checklist-title {
+  border-top: 8px solid #eee;
+  font-size: 20px;
+  font-weight: 500;
+  margin-top: 16px;
+  padding: 32px 0;
+}
+
+.create-card-checklist {
+  margin-bottom: 25px;
+
+
+  &__title {
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+
+  form {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  input {
+    flex: 1 1 auto;
+    // margin-left: 8px;
+    margin: 8px 0;
+    width: auto;
+  }
+
+  button {
+    @media screen and (min-width: 437px) {
+      margin-left: 8px;
+    }
+
+    // match height of input
+    &.mat-raised-button {
+      line-height: 40px;
+    }
+  }
+
+  .form__actions {
+    display: inline-flex;
+  }
+}
+
+boards-input-create {
+  margin-top: 8px;
+}
+
+.menu-header {
+  font-weight: 500;
+  padding: 16px;
+}
+
+.checklist-tasks {
+  max-height: 200px;
+
+  &__menu,
+  &__menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    .card-title {
+      background-color: #eee;
+      padding: 8px 16px;
+    }
+
+    .card-checklists {
+      background: #fff;
+      margin: 8px -16px -8px;
+    }
+  }
+}
+
+.copy-tasks {
+  margin-top: 8px;
+}

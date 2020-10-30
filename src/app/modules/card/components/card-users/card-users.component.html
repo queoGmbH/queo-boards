@@ -1,0 +1,13 @@
+<mat-grid-list
+  cols="4"
+  gutterSize="4px"
+  rowHeight="32px">
+
+  <mat-grid-tile
+    *ngFor="let user of users">
+    <boards-card-user
+      [user]="user">
+    </boards-card-user>
+  </mat-grid-tile>
+
+</mat-grid-list>

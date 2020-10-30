@@ -1,0 +1,21 @@
+<boards-card-detail-checklist-progress
+  [tasks]="(cardChecklistTasks$ | async)?.length"
+  [tasksDone]="tasksDone">
+</boards-card-detail-checklist-progress>
+
+<div *ngFor="let cardChecklistTask of cardChecklistTasks$ | async; trackBy:trackByCardChecklistTask">
+  <boards-card-detail-checklist-task
+    [cardId]="cardId"
+    [cardChecklistTaskId]="cardChecklistTask?.businessId">
+  </boards-card-detail-checklist-task>
+</div>
+
+<div class="task-creation">
+  <mat-checkbox [checked]="false" [disabled]="true">
+    <boards-input-create
+      inputFormControlName="createCardChecklistTaskForm"
+      placeholder="Aufgabe hinzufügen..."
+      (create)="onCreateCardChecklistTask($event)">
+    </boards-input-create>
+  </mat-checkbox>
+</div>

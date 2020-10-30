@@ -1,0 +1,28 @@
+<ul
+  *ngIf="!editBoardLabel"
+  class="board-labels">
+  <li *ngFor="let boardLabel of (board$ | async)?.labels">
+    <button
+      mat-raised-button
+      class="board-label"
+      [style.backgroundColor]="boardLabel?.color"
+      (click)="toggleEditBoardLabel(boardLabel)">
+      <div class="board-label__content">
+        {{ boardLabel?.name}}
+        <mat-icon>
+          edit
+        </mat-icon>
+      </div>
+    </button>
+  </li>
+</ul>
+
+<boards-board-label-form
+  [editBoardLabel]="editBoardLabel"
+  [labelColors]="labelColors"
+  [selectedBoardLabel]="selectedBoardLabel"
+  (createBoardLabel)="handleCreateBoardLabel($event)"
+  (updateBoardLabel)="handleUpdateBoardLabel($event)"
+  (removeBoardLabel)="handleRemoveBoardLabel($event)"
+  (resetEdit)="handleResetEdit()">
+</boards-board-label-form>

@@ -1,0 +1,45 @@
+.board-labels {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+
+    + li {
+      margin-top: 4px;
+    }
+
+    &:last-child {
+      margin-bottom: 16px;
+    }
+  }
+}
+
+.board-label {
+  width: 100%;
+
+  &:hover {
+
+    mat-icon {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  &__content {
+    align-items: center;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+
+
+    mat-icon {
+      font-size: 20px;
+      height: 20px;
+      opacity: 0;
+      transition: opacity ease-in-out 0.15s, visibility ease-in-out 0.15s;
+      visibility: hidden;
+      width: 20px;
+    }
+  }
+}

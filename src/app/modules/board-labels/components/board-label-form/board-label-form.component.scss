@@ -1,0 +1,64 @@
+:host {
+  //.cdk-visually-hidden {
+  //  width: 0;
+  //  height: 0;
+  //}
+
+  mat-button-toggle-group {
+    width: 100%;
+
+    mat-grid-list {
+      width: 100%;
+    }
+  }
+}
+
+.mat-button-toggle-button {
+  width: 100%;
+}
+
+.board-label-form-title {
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+
+.board-labels-form {
+
+  &__colors {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 16px;
+
+    .mat-button-toggle--label-color {
+      flex: 20%;
+
+      .label-icon {
+        align-items: center;
+        color: #fff;
+        display: flex;
+        height: 36px;
+        justify-content: center;
+        visibility: hidden;
+        width: 100%;
+      }
+
+      &.mat-button-toggle-checked {
+
+        .label-icon {
+          visibility: visible;
+        }
+      }
+    }
+  }
+
+  &__buttons {
+    margin-top: 8px;
+
+    button {
+
+      + button {
+        margin-left: 8px;
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+.create-board {
+
+  &__title {
+    display: flex;
+  }
+}
+
+.accessibility-title {
+  margin-bottom: 8px;
+}
+
+mat-radio-button {
+
+  + mat-radio-button {
+    margin-left: 16px;
+  }
+}

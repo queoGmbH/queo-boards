@@ -1,0 +1,27 @@
+.card-detail-comments {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    border-top: 1px solid #eee;
+    display: block;
+    margin-top: 16px;
+  }
+}
+
+.create-card-comment {
+
+  &__title {
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  textarea {
+    resize: none;
+  }
+
+  button {
+    margin-top: 8px;
+  }
+}

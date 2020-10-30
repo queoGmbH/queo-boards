@@ -1,0 +1,55 @@
+@import '~@angular/material/theming';
+
+:host {
+  cursor: pointer;
+}
+
+.card {
+  font-size: 18px;
+  padding: 0 16px 0;
+
+  &:hover {
+    // @include mat-elevation(4);
+  }
+
+  &__header,
+  &__footer {
+    display: flex;
+  }
+
+  &__header {
+    margin-bottom: 8px;
+    position: relative;
+  }
+
+  &__title {
+    padding: 8px 0;
+    word-wrap: break-word;
+  }
+
+  &__footer {
+    align-items: flex-end;
+    bottom: 0;
+    justify-content: space-between;
+    margin-top: 8px;
+
+    .users {
+      display: flex;
+      overflow: hidden;
+      width: 50%;
+    }
+
+    .counter {
+      display: flex;
+      width: 50%;
+      justify-content: flex-end;
+    }
+
+    .counter__item {
+
+      + .counter__item {
+        margin-left: 4px;
+      }
+    }
+  }
+}

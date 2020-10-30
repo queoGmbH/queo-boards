@@ -1,0 +1,29 @@
+<div class="card-labels">
+  <div class="component-title">
+    Labels
+    <boards-board-label-select
+      [cardLabels]="card?.assignedLabels"
+      [labelColors]="labelColors"
+      (boardLabelSelect)="handleBoardLabelSelect($event)"
+      (createBoardLabel)="handleCreateBoardLabel($event)">
+    </boards-board-label-select>
+  </div>
+  <div class="card-labels__labels">
+    <ng-content *ngIf="card?.assignedLabels?.length > 0; else noAssignedLabels"></ng-content>
+    <div
+      *ngFor="let cardLabel of card?.assignedLabels; trackBy:trackByCardLabel"
+      mat-raised-button
+      class="card-label"
+      [style.backgroundColor]="cardLabel.color">
+      {{ cardLabel.name }}
+    </div>
+
+    <ng-template #noAssignedLabels>
+      Keine Labels zugewiesen...
+    </ng-template>
+  </div>
+</div>
+
+
+
+

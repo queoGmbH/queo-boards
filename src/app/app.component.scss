@@ -1,0 +1,24 @@
+.boards {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  overflow: hidden;
+
+  &__header {
+    flex: 0 0 auto;
+    z-index: 10;
+  }
+
+  &__content {
+    flex: 1 1 auto;
+    margin-top: 56px;
+    overflow-y: auto;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+
+    @media (min-width: 600px) {
+      margin-top: 64px;
+    }
+  }
+}

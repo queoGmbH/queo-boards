@@ -1,0 +1,41 @@
+<div class="filter">
+  <h2>Label</h2>
+  <div
+    *ngIf="(board$ | async)?.labels.length > 0; else noLabels"
+    class="filter-label">
+    <boards-board-label-toggle
+      [board]="board$ | async"
+      [selectedLabels]="(boardFilter$ | async)?.labels"
+      (boardLabelSelect)="handleBoardLabelSelect($event)">
+    </boards-board-label-toggle>
+  </div>
+
+  <ng-template #noLabels>
+    <h3>Keine Labels...</h3>
+  </ng-template>
+
+  <boards-filter-member
+    *ngIf="(board$ | async)?.boardUsers.length > 0"
+    [board]="board$ | async"
+    [selectedBoardUsers]="(boardFilter$ | async)?.boardUsers"
+    (boardUserSelect)="handleBoardUserSelect($event)">
+  </boards-filter-member>
+
+  <div
+    *ngIf="(board$ | async)?.labels.length > 0 || (board$ | async)?.boardUsers.length > 0; else noFilter"
+    class="filter__action">
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="!((boardFilter$ | async)?.labels?.length > 0 || (boardFilter$ | async)?.boardUsers?.length > 0 )"
+      (click)="resetFilter()">
+      Filter zurücksetzen
+    </button>
+  </div>
+
+  <ng-template #noFilter>
+    <h3>Filtern nicht möglich...</h3>
+  </ng-template>
+</div>
+
+

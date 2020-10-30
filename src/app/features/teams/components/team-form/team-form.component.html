@@ -1,0 +1,60 @@
+<div class="team-form">
+  <form [formGroup]="teamForm">
+    <div class="form-group">
+      <label for="teamName">Name</label>
+      <input
+        id="teamName"
+        class="form-control"
+        formControlName="name"
+        autocomplete="off"
+        placeholder="Team Name..."
+        type="text">
+    </div>
+
+    <div class="form-group">
+      <label
+        for="teamDescription">
+        Beschreibung
+      </label>
+      <input
+        id="teamDescription"
+        class="form-control"
+        formControlName="description"
+        autocomplete="off"
+        placeholder="Team Beschreibung..."
+        type="text">
+    </div>
+
+    <div class="form-actions">
+      <button
+        *ngIf="!edit"
+        mat-raised-button
+        color="primary"
+        type="button"
+        [disabled]="!teamForm.valid"
+        (click)="onSubmit()">
+        Speichern
+      </button>
+
+      <button
+        *ngIf="edit"
+        mat-raised-button
+        color="primary"
+        type="button"
+        [disabled]="!teamForm.valid || !teamFormChanged"
+        (click)="onSubmit()">
+        Speichern
+      </button>
+
+      <button
+        *ngIf="edit"
+        mat-raised-button
+        color="warn"
+        type="button"
+        (click)="onRemoveTeam()">
+        Team Löschen
+      </button>
+    </div>
+
+  </form>
+</div>

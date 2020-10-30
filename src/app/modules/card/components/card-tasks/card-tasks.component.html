@@ -1,0 +1,11 @@
+<div
+  *ngIf="showCounter"
+  class="card-tasks"
+  matTooltip="Erledigte Aufgaben">
+  <mat-icon class="mat-dark">
+    assignment_turned_in
+  </mat-icon>
+  <div class="card-tasks__counter">
+    {{ tasksCounter }}
+  </div>
+</div>

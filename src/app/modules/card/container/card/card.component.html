@@ -1,0 +1,47 @@
+<mat-card
+  class="card"
+  (click)="openCardDialog()">
+
+  <div class="card__header">
+    <boards-card-labels
+      [assignedLabels]="(card$ | async)?.assignedLabels">
+    </boards-card-labels>
+  </div>
+
+  <div class="card__title noselect">
+    {{ (card$ | async)?.title }}
+  </div>
+
+  <boards-card-detail-due-date-label
+    *ngIf="(card$ | async)?.due"
+    [dueDate]="(card$ | async)?.due"
+    [details]="false">
+  </boards-card-detail-due-date-label>
+
+  <div class="card__footer">
+    <div class="users">
+      <boards-card-users
+        *ngIf="(card$ | async)?.assignedUsers?.length > 0"
+        [users]="(card$ | async)?.assignedUsers">
+      </boards-card-users>
+    </div>
+
+    <div class="counter">
+      <boards-card-attachment-count
+        class="counter__item"
+        [cardAttachmentCount]="(card$ | async)?.attachmentsCount">
+      </boards-card-attachment-count>
+      <boards-card-tasks
+        class="counter__item"
+        [tasksDoneCount]="(card$ | async)?.tasksDoneCount"
+        [tasksOverallCount]="(card$ | async)?.tasksOverallCount">
+      </boards-card-tasks>
+      <boards-card-comment-count
+        class="counter__item"
+        [cardCommentCount]="(cardComments$ | async)?.length">
+      </boards-card-comment-count>
+    </div>
+
+  </div>
+
+</mat-card>

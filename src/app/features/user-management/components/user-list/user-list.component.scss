@@ -1,0 +1,45 @@
+.user-filter {
+  padding: 16px 0 0;
+}
+
+.user-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.user-list-item {
+  width: 50%;
+
+  &__content {
+    align-items: center;
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: space-between;
+  }
+}
+
+.user-list-paginator {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  margin-top: 16px;
+}
+/***************************************************/
+
+mat-form-field {
+  margin-top: 20px;
+}
+
+
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 25%;
+}

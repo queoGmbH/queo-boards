@@ -1,0 +1,107 @@
+@import "../../../../../styles/variables";
+@import "~bootstrap/scss/mixins";
+
+:host {
+
+  @include make-col-ready();
+
+  @include media-breakpoint-up(sm) {
+    @include make-col(6);
+  }
+
+  @include media-breakpoint-up(md) {
+    @include make-col(4);
+  }
+
+  @include media-breakpoint-up(lg) {
+    @include make-col(3);
+  }
+
+  @include media-breakpoint-up(xl) {
+    @include make-col(3);
+  }
+
+}
+
+.board-link {
+  position: relative;
+  @include media-breakpoint-down(xs) {
+    align-items: center;
+    display: flex;
+
+    .content {
+      border-bottom: 1px solid #eee;
+      display: flex;
+      margin-left: 16px;
+      padding: 12px 0;
+      width: 100%;
+
+      &:focus {
+        outline: none;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      > span {
+        flex: 1 1 auto;
+      }
+    }
+  }
+
+  &__border {
+    border-bottom-left-radius: 4px;
+    border-top-left-radius: 4px;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 8px;
+    z-index: 1;
+  }
+
+  &__button {
+    display: block;
+    padding: 8px 16px;
+
+    @include media-breakpoint-down(xs) {
+      height: 32px;
+      min-width: 32px;
+      width: 32px;
+    }
+
+    @include media-breakpoint-up(sm) {
+      height: 80px;
+      margin: 8px 0;
+      width: 100%;
+    }
+  }
+
+  .content {
+    align-items: center;
+    display: flex;
+    font-size: 18px;
+    height: 100%;
+    padding-right: 24px;
+    position: relative;
+
+    > div {
+      line-height: 20px;
+      max-height: 60px;
+      overflow: hidden;
+      text-align: left;
+      white-space: normal;
+    }
+
+    mat-icon {
+      margin-left: 8px;
+
+      @include media-breakpoint-up(sm) {
+        position: absolute;
+        right: -8px;
+        top: 0;
+      }
+    }
+  }
+}

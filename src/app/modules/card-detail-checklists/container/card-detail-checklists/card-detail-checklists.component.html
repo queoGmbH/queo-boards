@@ -1,0 +1,87 @@
+<div
+  class="component-title">
+  Checklisten
+</div>
+
+<div
+  class="create-card-checklist">
+  <div class="create-card-checklist__title">
+    Checkliste hinzufügen
+  </div>
+
+  <form
+    class="create-card-checklist__form"
+    [formGroup]="createCardChecklistForm"
+    (submit)="createCardChecklist()">
+    <input
+      class="form-control"
+      formControlName="title"
+      placeholder="Name der Checkliste"
+      autocomplete="off"
+      type="text">
+    <div class="form__actions">
+      <button
+        mat-raised-button
+        color="primary"
+        type="button"
+        [disabled]="!createCardChecklistForm.valid"
+        (click)="createCardChecklist()">
+        Speichern
+      </button>
+
+      <div *ngIf="(boardChecklists$ | async)?.length > 0">
+        <button
+          mat-icon-button
+          type="button"
+          matTooltip="Aufgaben übernehmen von..."
+          matTooltipPosition="below"
+          [matMenuTriggerFor]="cardCopyChecklistTasks">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu
+          #cardCopyChecklistTasks="matMenu"
+          class="menu-checklist-tasks"
+          xPosition="before"
+          yPosition="below"
+          [overlapTrigger]="false">
+          <div class="menu-header">
+            Aufgaben übernehmen von...
+          </div>
+          <ul class="checklist-tasks__menu">
+            <li *ngFor="let card of boardChecklists$ | async">
+              <ul>
+                <li class="card-title">
+                  {{ card?.title }}
+                  <ul class="card-checklists">
+                    <li *ngFor="let cardChecklist of card?.checklists">
+                      <button
+                        mat-menu-item (click)="selectCardChecklist(cardChecklist)">
+                        <span>{{ cardChecklist?.title }}</span>
+                      </button>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </mat-menu>
+      </div>
+    </div>
+  </form>
+
+  <div
+    *ngIf="tasksToCopyFrom"
+    class="copy-tasks">
+    Aufgaben übernehmen von: <span>{{ tasksToCopyFrom }}</span>
+  </div>
+</div>
+
+<div *ngFor="let cardChecklist of (cardChecklists$ | async)?.checklists | reverse; trackBy:trackByCardChecklist">
+  <boards-card-detail-checklist
+    [cardChecklistId]="cardChecklist?.businessId">
+  </boards-card-detail-checklist>
+  <boards-card-detail-checklist-tasks
+    [cardId]="cardId"
+    [cardChecklistId]="cardChecklist?.businessId">
+  </boards-card-detail-checklist-tasks>
+</div>

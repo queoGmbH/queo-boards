@@ -1,0 +1,23 @@
+<div class="container-fluid">
+
+  <h1>Profil</h1>
+  <div class="profile-container">
+    <div class="profile-show-data">
+      <span class="data-name">{{(currentUser$ | async)?.firstname}} {{(currentUser$ | async)?.lastname}}</span> <br>
+      <span class="data-login">{{(currentUser$ | async)?.name}}</span>
+      <!--<div class="profile-statistics">
+        <boards-profile-statistic [statistics]="statistics"></boards-profile-statistic>
+
+      </div>-->
+    </div>
+
+    <mat-card class="profile-change-passwort">
+
+      <h4>Passwort ändern</h4>
+
+      <boards-password-form
+        (updatePassword)="handleUpdatePassword($event)">
+      </boards-password-form>
+    </mat-card>
+  </div>
+</div>

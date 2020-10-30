@@ -1,0 +1,182 @@
+<form
+  *ngIf="!disabled || (disabled && selectedUser)"
+  autocomplete="off"
+  spellcheck="false"
+  class="board-form"
+  [formGroup]="form">
+
+  <mat-form-field>
+    <input
+      matInput
+      required
+      formControlName="firstname"
+      placeholder="Vorname"
+      type="text">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input
+      matInput
+      required
+      formControlName="lastname"
+      placeholder="Nachname"
+      type="text">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input
+      matInput
+      required
+      autocomplete="new-email"
+      formControlName="mail"
+      placeholder="Email"
+      type="email">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input
+      matInput
+      required
+      formControlName="name"
+      placeholder="Login"
+      type="text">
+  </mat-form-field>
+
+  <div *ngIf="!selectedUser">
+    <mat-form-field>
+      <input
+        matInput
+        autocomplete="new-password"
+        formControlName="password"
+        placeholder="Passwort"
+        [type]="hidePassword ? 'password' : 'text'">
+      <mat-icon
+        matSuffix
+        (click)="hidePassword = !hidePassword">
+        {{hidePassword ? 'visibility' : 'visibility_off'}}
+      </mat-icon>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        matInput
+        autocomplete="new-password"
+        formControlName="confirmPassword"
+        placeholder="Passwort bestätigen"
+        [type]="hidePassword2 ? 'password' : 'text'">
+      <mat-icon
+        matSuffix
+        (click)="hidePassword2 = !hidePassword2">
+        {{hidePassword2 ? 'visibility' : 'visibility_off'}}
+      </mat-icon>
+    </mat-form-field>
+  </div>
+
+  <mat-form-field>
+    <mat-select
+      formControlName="roles"
+      placeholder="Rollen"
+      multiple>
+      <mat-option
+        *ngFor="let role of (roles$ | async)"
+        [value]="role">
+        {{ role }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-checkbox formControlName="isEnabled" [value]="isEnabled">Aktiv</mat-checkbox>
+
+  <!--<mat-error *ngIf="form.invalid">-->
+  <!--Please fill out all fields.-->
+  <!--</mat-error>-->
+  <mat-error *ngIf="!confirmedPw">Das Passwort stimmt nicht mit der Bestätigung überein!</mat-error>
+  <div class="board-form__actions">
+    <button
+      *ngIf="!selectedUser"
+      mat-raised-button
+      color="primary"
+      type="button"
+      [disabled]="form.invalid"
+      (click)="onCreateUser()">
+      Hinzufügen
+    </button>
+
+    <button
+      *ngIf="selectedUser"
+      mat-raised-button
+      color="primary"
+      type="button"
+      [disabled]="form.invalid"
+      (click)="onUpdateUser()">
+      Bearbeiten
+    </button>
+
+    <button
+      mat-raised-button
+      type="button"
+      (click)="onCancel()">
+      Abbrechen
+    </button>
+  </div>
+
+</form>
+
+<div *ngIf="selectedUser && (selectedUser.userCategory === 'Local')" class="password-form">
+  <h2>Passwort ändern</h2>
+
+  <form
+    autocomplete="off"
+    spellcheck="false"
+    class="board-form"
+    [formGroup]="password_form">
+    <mat-form-field>
+      <input
+        matInput
+        autocomplete="new-password"
+        formControlName="password"
+        placeholder="Passwort"
+        [type]="hidePassword3 ? 'password' : 'text'">
+      <mat-icon
+        matSuffix
+        (click)="hidePassword3 = !hidePassword3">
+        {{hidePassword3 ? 'visibility' : 'visibility_off'}}
+      </mat-icon>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        matInput
+        autocomplete="new-password"
+        formControlName="confirmPassword"
+        placeholder="Passwort bestätigen"
+        [type]="hidePassword4 ? 'password' : 'text'">
+      <mat-icon
+        matSuffix
+        (click)="hidePassword4 = !hidePassword4">
+        {{hidePassword4 ? 'visibility' : 'visibility_off'}}
+      </mat-icon>
+    </mat-form-field>
+  </form>
+
+  <mat-error *ngIf="!confirmedPw2">Das Passwort stimmt nicht mit der Bestätigung überein!</mat-error>
+  <div class="board-form__actions">
+
+    <button
+      *ngIf="selectedUser"
+      mat-raised-button
+      color="primary"
+      type="button"
+      [disabled]="password_form.invalid"
+      (click)="onUpdatePassword()">
+      Passwort ändern
+    </button>
+
+    <button
+      mat-raised-button
+      type="button"
+      (click)="onCancel()">
+      Abbrechen
+    </button>
+  </div>
+</div>

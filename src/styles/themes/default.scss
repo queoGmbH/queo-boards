@@ -1,0 +1,86 @@
+@import 'colors';
+
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+// mat-palette($base-palette, $default: 500, $lighter: 100, $darker: 700)
+$boards-default-primary: mat-palette($boards-green);
+$boards-default-accent: mat-palette($mat-orange, A200, A100, A400);
+
+// mat-light-theme($primary, $accent, $warn: mat-palette($mat-red))
+$boards-default-theme: mat-light-theme($boards-default-primary, $boards-default-accent);
+
+.boards-default-theme {
+
+  @include angular-material-theme($boards-default-theme);
+
+  .mat-dialog-content {
+    @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+      max-height: 50vh;
+    }
+  }
+
+  .mat-button-toggle-group-appearance-standard {
+    border: none;
+
+    .mat-button-toggle {
+
+      + .mat-button-toggle {
+        border-left: none;
+      }
+    }
+
+    &.mat-button-toggle-vertical {
+
+      .mat-button-toggle {
+
+        + .mat-button-toggle {
+          border-top: none;
+        }
+      }
+    }
+  }
+
+  .mat-button-toggle-checked {}
+
+  .mat-button-toggle-group {
+    // border-radius: 0;
+    // box-shadow: none;
+
+    .mat-button-toggle {
+
+      &--label-color {
+
+        .mat-button-toggle-button {
+          // width: 100%;
+        }
+
+        .mat-button-toggle-label-content {
+          // padding: 0 8px;
+        }
+      }
+
+      &--member {
+
+        .mat-button-toggle-button {
+          // margin: 0;
+        }
+      }
+    }
+  }
+
+  .boards-message {
+    background-color: #00aec8;
+    color: white;
+
+    button {
+      color: white;
+    }
+  }
+
+  .square-button {
+    background-color: #eee;
+  }
+}
+

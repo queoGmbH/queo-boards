@@ -1,0 +1,23 @@
+<div [style.backgroundColor]="themes[selectedTheme]?.backgroundColor">
+  <button
+    mat-icon-button
+    [matMenuTriggerFor]="themeSelectMenu">
+    <mat-icon class="mat-dark">
+      format_color_fill
+    </mat-icon>
+  </button>
+  <mat-menu
+    #themeSelectMenu="matMenu"
+    xPosition="before"
+    yPosition="below"
+    class="theme-select"
+    [overlapTrigger]="false">
+    <button
+      *ngFor="let theme of themes | keys"
+      mat-menu-item
+      class="menu-item"
+      [ngStyle]="colorStyles(theme)"
+      (click)="onThemeSelect(theme)">
+    </button>
+  </mat-menu>
+</div>

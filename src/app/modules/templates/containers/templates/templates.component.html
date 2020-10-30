@@ -1,0 +1,16 @@
+<div
+  *ngIf="!(boardTemplates$ | async)?.length; else showTemplates">
+  <h3>Keine Board-Vorlagen...</h3>
+</div>
+
+<ng-template #showTemplates>
+  <ul class="templates">
+    <li *ngFor="let template of boardTemplates$ | async">
+      <boards-template
+        [template]="template"
+        (templateRemove)="handleTemplateRemove($event)">
+      </boards-template>
+    </li>
+  </ul>
+</ng-template>
+

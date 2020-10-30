@@ -1,0 +1,34 @@
+<form class="upload-attachment">
+  <input
+    #inputFile
+    hidden
+    name="inputFile"
+    type="file"
+    [accept]="fileExtensions"
+    (change)="onNativeInputFileSelect($event)">
+  <span *ngIf="loading">Loading...</span>
+  <span
+    *ngIf="formError"
+    class="error">
+    Max. 5MB, Dateien: {{ extensions.join(', ') }}
+    <button
+      mat-icon-button
+      (click)="hideFormError()">
+      <mat-icon>
+        close
+      </mat-icon>
+    </button>
+  </span>
+  <button
+    class="mat-dark"
+    *ngIf="!formError"
+    mat-icon-button
+    type="button"
+    (click)="selectFile()">
+    <mat-icon>
+      add
+    </mat-icon>
+  </button>
+</form>
+
+

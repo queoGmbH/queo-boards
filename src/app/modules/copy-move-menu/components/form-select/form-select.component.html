@@ -1,0 +1,22 @@
+<div (click)="$event.stopPropagation()">
+  {{ label }}
+</div>
+
+<mat-form-field
+  [formGroup]="group"
+  (click)="$event.stopPropagation()">
+  <mat-select
+    [formControlName]="controlName"
+    (change)="onChange($event)">
+    <mat-option
+      *ngIf="hasStart"
+      [value]="0">
+      An den Anfang
+    </mat-option>
+    <mat-option
+      *ngFor="let item of items; trackBy:trackById"
+      [value]="item.businessId">
+      {{ item.title }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

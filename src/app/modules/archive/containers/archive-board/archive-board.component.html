@@ -1,0 +1,44 @@
+<h2>Karten</h2>
+
+<div
+  *ngIf="(archivedCards$ | async)?.length > 0; else noArchivedCards"
+  class="archive">
+  <ul class="archive__list">
+    <li *ngFor="let archivedCard of archivedCards$ | async; trackBy:trackByBusinessId">
+      <boards-archived-item
+        [canChange]="(currentBoardRoles$ | async)?.includes(BOARD_OWNER) ||
+          (currentBoardRoles$ | async)?.includes(BOARD_MEMBER) ||
+          (currentUser$ | async)?.roles.includes(ROLE_ADMIN)"
+        [item]="archivedCard"
+        (restore)="handleRestoreCard($event)">
+      </boards-archived-item>
+    </li>
+  </ul>
+</div>
+
+<ng-template #noArchivedCards>
+  <h3>Keine archivierten Karten...</h3>
+</ng-template>
+
+<h2>Listen</h2>
+
+<div
+  *ngIf="(archivedLists$ | async)?.length > 0; else noArchivedLists"
+  class="archive">
+  <ul class="archive__list">
+    <li *ngFor="let archivedList of archivedLists$ | async; trackBy:trackByBusinessId">
+      <boards-archived-item
+        [canChange]="(currentBoardRoles$ | async)?.includes(BOARD_OWNER) ||
+          (currentBoardRoles$ | async)?.includes(BOARD_MEMBER) ||
+          (currentUser$ | async)?.roles?.includes(ROLE_ADMIN)"
+        [item]="archivedList"
+        (restore)="handleRestoreList($event)">
+      </boards-archived-item>
+
+    </li>
+  </ul>
+</div>
+
+<ng-template #noArchivedLists>
+  <h3>Keine archivierten Listen...</h3>
+</ng-template>

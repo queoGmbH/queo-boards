@@ -1,0 +1,46 @@
+form {
+
+  .form-control {
+    font-family: Roboto, 'Helvetica Neue', sans-serif;
+
+    &--visible,
+    &--themed {
+      border-color: transparent;
+
+      &.ng-touched.ng-invalid {
+
+        &:not(.ng-pristine) {
+          background-color: #fff;
+          border-color: $red;
+        }
+      }
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.15);
+        border-color: rgba(0, 0, 0, 0.15);
+        cursor: pointer;
+      }
+
+      &:focus {
+        background-color: $input-bg;
+        border-color: $input-border-color;
+        cursor: text;
+      }
+    }
+
+    &--visible {
+      background-color: #eee;
+    }
+
+    &--themed {
+      background-color: transparent;
+    }
+  }
+}
+
+textarea {
+  min-height: 40px;
+}
+
+
+

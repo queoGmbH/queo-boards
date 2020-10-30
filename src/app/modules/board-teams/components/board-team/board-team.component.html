@@ -1,0 +1,20 @@
+<div class="board-team">
+  <button
+    mat-button
+    class="board-team__info"
+    [disabled]="!(currentUser$ | async)?.roles.includes(ROLE_ADMIN)"
+    (click)="goToBoardTeam()">
+    {{ boardTeam?.name }}
+  </button>
+  <button
+    *ngIf="(currentBoardRoles$ | async)?.includes(BOARD_OWNER) ||
+           (currentUser$ | async)?.roles.includes(ROLE_ADMIN)"
+    mat-icon-button
+    class="board-team__remove"
+    (click)="onRemoveBoardTeam()">
+    <mat-icon
+      class="mat-dark">
+      delete
+    </mat-icon>
+  </button>
+</div>

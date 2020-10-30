@@ -1,0 +1,18 @@
+<div class="card-checklist-header">
+  <mat-icon class="mat-dark">
+    assignment_turned_in
+  </mat-icon>
+  <boards-input-update
+    inputFormControlName="checklistTitleForm"
+    [value]="(cardChecklist$ | async)?.title"
+    (update)="onUpdateCardChecklistTitle($event)">
+  </boards-input-update>
+  <button
+    class="mat-dark mat-dark--dimmed"
+    mat-icon-button
+    (click)="onRemoveCardChecklist()">
+    <mat-icon>
+      close
+    </mat-icon>
+  </button>
+</div>

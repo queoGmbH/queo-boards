@@ -1,0 +1,12 @@
+<h1>
+  {{ (team$ | async)?.name }}
+</h1>
+
+<div class="row">
+  <boards-board-link
+    *ngFor="let teamBoardSummary of (team$ | async)?.boards"
+    [boardSummary]="teamBoardSummary"
+    [disableButton]="true">
+  </boards-board-link>
+</div>
+

@@ -1,0 +1,19 @@
+.mat-button {
+  background-color: #eee;
+  text-align: left;
+  width: 100%
+}
+
+.template {
+  padding: 8px;
+
+  &__content {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+
+    > span {
+      line-height: 16px;
+    };
+  }
+}

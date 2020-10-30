@@ -1,0 +1,36 @@
+<form
+  [formGroup]="inputFormGroup">
+  <textarea
+    boardsAutoResizeTextarea
+    class="form-control form-control--themed"
+    rows="1"
+    spellcheck="false"
+    type="text"
+    [formControlName]="inputFormControlName"
+    [maxlength]="maxLength"
+    [placeholder]="placeholder"
+    (keydown.enter)="$event.preventDefault(); onCreate($event)">
+  </textarea>
+  <button
+    *ngIf="!empty && (inputFormControlName == 'cardTitle')"
+    mat-icon-button
+    type="button"
+    [disabled]="!inputFormGroup.valid"
+    (click)="$event.preventDefault(); onCreateAndOpenCard($event)">
+    <mat-icon
+      *ngIf="inputFormGroup.valid">
+      edit
+    </mat-icon>
+  </button>
+  <button
+    *ngIf="!empty"
+    mat-icon-button
+    type="button"
+    [disabled]="!inputFormGroup.valid"
+    (click)="$event.preventDefault(); onCreate($event)">
+    <mat-icon
+      *ngIf="inputFormGroup.valid">
+      check
+    </mat-icon>
+  </button>
+</form>

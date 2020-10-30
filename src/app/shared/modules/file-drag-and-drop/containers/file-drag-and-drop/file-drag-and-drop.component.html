@@ -1,0 +1,15 @@
+<ngx-file-drop
+  #filedrop
+  dropZoneLabel="Drop files here"
+  (onFileDrop)="dropped($event)"
+  (onFileOver)="fileOver($event)"
+  (onFileLeave)="fileLeave($event)">
+  <span *ngIf="progressSpinner$ | async">
+    <mat-progress-spinner
+      class="file-spinner"
+      mode="indeterminate"
+      [diameter]="40"
+      color="primary">
+    </mat-progress-spinner>
+  </span>
+</ngx-file-drop>

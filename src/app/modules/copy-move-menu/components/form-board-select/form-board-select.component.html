@@ -1,0 +1,26 @@
+<div (click)="$event.stopPropagation()">
+  {{ label }}
+</div>
+
+<mat-form-field
+  [formGroup]="group"
+  (click)="$event.stopPropagation()">
+  <mat-select
+    [formControlName]="controlName"
+    (change)="onChange($event)">
+    <mat-optgroup label="Eingeschränkte Boards">
+      <mat-option
+        *ngFor="let item of items | orderBy: 'title' | accessibility : accessibility.RESTRICTED; trackBy:trackById"
+        [value]="item.businessId">
+        {{ item.title }}
+      </mat-option>
+    </mat-optgroup>
+    <mat-optgroup label="Öffentliche Boards">
+      <mat-option
+        *ngFor="let item of items | orderBy: 'title' | accessibility : accessibility.PUBLIC; trackBy:trackById"
+        [value]="item.businessId">
+        {{ item.title }}
+      </mat-option>
+    </mat-optgroup>
+  </mat-select>
+</mat-form-field>

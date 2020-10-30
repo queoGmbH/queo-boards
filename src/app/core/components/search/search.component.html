@@ -1,0 +1,105 @@
+<form
+  class="search"
+  [formGroup]="searchForm">
+
+  <div class="input-wrapper">
+    <input
+      class="form-control"
+      formControlName="search"
+      type="text"
+      [matAutocomplete]="globalSearch">
+    <button
+      mat-icon-button
+      class="form-action"
+      type="button"
+      [disabled]="!searchForm.valid">
+      <mat-icon>
+        search
+      </mat-icon>
+    </button>
+  </div>
+
+  <mat-autocomplete
+    #globalSearch="matAutocomplete"
+    (optionSelected)="navigateToResult($event)">
+
+    <mat-optgroup
+      *ngIf="searchResult?.boards.length > 0"
+      [label]="'Boards'">
+      <mat-option
+        *ngFor="let board of searchResult?.boards | sortAccessibility : 'Restricted'"
+        [value]="{ resultType: resultTypeBoard, resultModel: board }">
+        {{ board.summary.title }}
+      </mat-option>
+    </mat-optgroup>
+
+    <div *ngIf="boardId">
+      <mat-optgroup
+        *ngIf="(searchResult?.cards | cardsByBoardId : boardId: true)?.length > 0"
+        [label]="'Karten (Aktuelles Board)'">
+        <mat-option
+          *ngFor="let card of searchResult?.cards | cardsByBoardId : boardId: true | sortDate"
+          [value]="{ resultType: resultTypeCard, resultModel: card }">
+          {{ card.title }}
+        </mat-option>
+      </mat-optgroup>
+
+      <mat-optgroup
+        *ngIf="(searchResult?.cards | cardsByBoardId: boardId : false)?.length > 0"
+        [label]="'Karten'">
+        <mat-option
+          *ngFor="let card of searchResult?.cards | cardsByBoardId: boardId : false | sortDate"
+          [value]="{ resultType: resultTypeCard, resultModel: card }">
+          {{ card.title }}
+        </mat-option>
+      </mat-optgroup>
+    </div>
+
+    <div *ngIf="!boardId">
+      <mat-optgroup
+        *ngIf="searchResult?.cards.length > 0"
+        [label]="'Karten'">
+        <mat-option
+          *ngFor="let card of searchResult?.cards | sortDate"
+          [value]="{ resultType: resultTypeCard, resultModel: card }">
+          {{ card.title }}
+        </mat-option>
+      </mat-optgroup>
+    </div>
+
+    <div *ngIf="boardId">
+      <mat-optgroup
+        *ngIf="(searchResult?.comments | commentsByBoardId : boardId : true)?.length > 0"
+        label="Kommentare (Aktuelles Board)">
+        <mat-option
+          *ngFor="let comment of searchResult?.comments | commentsByBoardId : boardId : true | sortDate"
+          [value]="{ resultType: resultTypeComment, resultModel: comment }">
+          {{ comment.text.slice(0, 50) }}
+        </mat-option>
+      </mat-optgroup>
+      <mat-optgroup
+        *ngIf="(searchResult?.comments | commentsByBoardId : boardId : false)?.length > 0"
+        label="Kommentare">
+        <mat-option
+          *ngFor="let comment of searchResult?.comments | commentsByBoardId : boardId : false | sortDate"
+          [value]="{ resultType: resultTypeComment, resultModel: comment }">
+          {{ comment.text.slice(0, 50) }}
+        </mat-option>
+      </mat-optgroup>
+    </div>
+
+    <div *ngIf="!boardId">
+      <mat-optgroup
+        *ngIf="searchResult?.comments.length > 0"
+        label="Kommentare">
+        <mat-option
+          *ngFor="let comment of searchResult?.comments | sortDate"
+          [value]="{ resultType: resultTypeComment, resultModel: comment }">
+          {{ comment.text.slice(0, 50) }}
+        </mat-option>
+      </mat-optgroup>
+    </div>
+
+  </mat-autocomplete>
+
+</form>

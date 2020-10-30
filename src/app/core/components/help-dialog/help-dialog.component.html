@@ -1,0 +1,32 @@
+<h2 class="help-dialog__title" mat-dialog-title>
+  Hilfe
+</h2>
+<mat-dialog-content class="help-dialog__content">
+  <div>
+    <img
+      class="queo-logo"
+      src="assets/images/queo-logo-status-queo-rgb-pos.svg" alt="queo-logo">
+  </div>
+  <address>
+    queo GmbH<br>
+    Tharandter Strasse 13<br>
+    01159 Dresden
+  </address>
+  <div class="version">
+    <h2>Version</h2>
+    <div>
+      Webapi: {{ version$ | async }}
+    </div>
+    <div>
+      Frontend: 1.1.0
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions class="help-dialog__actions">
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="ok()">
+    Ok
+  </button>
+</mat-dialog-actions>

@@ -1,0 +1,14 @@
+.card-detail-thumbnails {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin: -4px;
+
+  li {
+    /*flex: 0 0 50%;
+    width: 50%;
+    max-width: 50%;*/
+    padding: 4px;
+  }
+}

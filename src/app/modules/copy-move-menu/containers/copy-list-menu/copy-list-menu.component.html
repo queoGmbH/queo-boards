@@ -1,0 +1,34 @@
+<form
+  [formGroup]="copyListForm">
+
+  <boards-form-board-select
+    controlName="board"
+    label="Board"
+    [group]="copyListForm"
+    [items]="boardSummaries$ | async"
+    (change)="handleBoardChange($event)">
+  </boards-form-board-select>
+
+  <boards-form-select
+    controlName="list"
+    label="Nach Liste"
+    [group]="copyListForm"
+    [hasStart]="true"
+    [items]="(selectedBoard$ | async)?.lists">
+  </boards-form-select>
+
+  <boards-form-textarea
+    controlName="copyName"
+    [group]="copyListForm">
+  </boards-form-textarea>
+
+  <button
+    mat-raised-button
+    color="primary"
+    type="button"
+    [disabled]="!copyListForm.valid"
+    (click)="copyList()">
+    Liste kopieren
+  </button>
+
+</form>

@@ -1,0 +1,23 @@
+.mat-primary {
+
+  .mat-option {
+
+    &.mat-selected {
+
+      &:not(.mat-option-disabled) {
+        color: rgba(black, 0.87);
+      }
+    }
+  }
+}
+
+.team-select {
+
+  .mat-input-infix.mat-form-field-infix {
+    padding: 10px 0;
+  }
+
+  .mat-form-field {
+    margin-right: 8px;
+  }
+}

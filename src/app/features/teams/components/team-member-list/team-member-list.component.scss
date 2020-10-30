@@ -1,0 +1,26 @@
+.team-members {
+  list-style: none;
+  margin: 0 0 16px;
+  padding: 0;
+
+  li {
+    align-items: center;
+    background-color: #eee;
+    border-radius: 2px;
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 16px;
+
+    + li {
+      margin-top: 4px;
+    }
+  }
+
+  &__name {
+    font-size: 16px;
+  }
+
+  &__actions {
+
+  }
+}

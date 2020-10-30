@@ -1,0 +1,22 @@
+<div class="filter-member">
+  <h2>
+    Mitglieder
+  </h2>
+  <mat-button-toggle-group
+    #memberSelect="matButtonToggleGroup"
+    class="filter-member__members"
+    multiple>
+
+    <mat-button-toggle
+      *ngFor="let boardUser of board?.boardUsers"
+      class="mat-button-toggle--member custom-toggle"
+      matRipple
+      [checked]="getSelectedBoardUser(boardUser)"
+      [matTooltip]="boardUser | userName"
+      [value]="boardUser"
+      (change)="onBoardUserSelect($event)">
+      {{ boardUser | userInitials }}
+    </mat-button-toggle>
+
+  </mat-button-toggle-group>
+</div>

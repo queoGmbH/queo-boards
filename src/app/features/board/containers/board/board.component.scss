@@ -1,0 +1,161 @@
+@import "../../../../../styles/variables";
+@import "~bootstrap/scss/mixins";
+
+:host {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+}
+
+.board {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+
+  &__header {
+    align-items: center;
+    display: flex;
+    min-height: 56px;
+    justify-content: space-between;
+    padding: 8px;
+
+    @media (min-width: 600px) {
+      min-height: 64px;
+      padding: 8px 16px;
+    }
+
+    .title {
+      font-size: 24px;
+      padding-right: 16px;
+    }
+  }
+
+  &__content {
+    flex: 1 1 auto;
+    position: relative;
+
+    .lists-wrapper {
+      bottom: 0;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+
+      .lists {
+        display: inline-block;
+        height: calc(100% - 4px);
+        vertical-align: top;
+        white-space: normal;
+
+        &:first-child {
+          border-right: 1px solid rgba(0, 0, 0, 0.1);;
+        }
+
+        &.scrollHelper .list-wrapper {
+          width: 120px;
+        }
+      }
+
+      .list-bag {
+        display: flex;
+        height: 100%;
+      }
+    }
+  }
+}
+
+.list-wrapper {
+  flex: 0 0 auto;
+  position: relative;
+  width: 100vw;
+
+  @include media-breakpoint-up(sm) {
+    width: 360px;
+  }
+
+  + .list-wrapper {
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .create-list {
+    padding: 0 8px;
+
+    @include media-breakpoint-up(sm) {
+      padding: 0 16px;
+    }
+
+    &__form {
+      background-color: rgba(0, 0, 0, 0.1);
+      padding: 8px;
+    }
+  }
+}
+
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  width: 100vw;
+
+  @include media-breakpoint-up(sm) {
+    width: 50vw;
+  }
+
+  @include media-breakpoint-up(lg) {
+    width: 30vw;
+  }
+
+  .content-wrapper {
+    position: absolute;
+    top: 56px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  &__content {
+    bottom: 0;
+    left: 0;
+    overflow-y: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    .wrapper {
+      padding: 16px;
+    }
+  }
+}
+
+.header-action {
+  display: flex;
+
+  button + button {
+    margin-left: 8px;
+  }
+}
+
+.filter-button {
+  align-items: center;
+  display: flex;
+
+  mat-icon {
+    margin-left: 4px;
+  }
+}
+
+.drag-list-container {
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  width: 100%;
+  white-space: nowrap;
+}

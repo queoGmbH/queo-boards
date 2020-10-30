@@ -1,0 +1,29 @@
+:host {
+  display: block;
+}
+
+.board-label-toggle {
+  align-items: center;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  line-height: 36px;
+}
+
+mat-button-toggle-group {
+  width: 100%;
+
+  mat-button-toggle {
+
+    &.mat-button-toggle-checked {
+
+      mat-icon {
+        visibility: visible;
+      }
+    }
+
+    mat-icon {
+      visibility: hidden;
+    }
+  }
+}

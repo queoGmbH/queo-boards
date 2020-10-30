@@ -21,3 +21,10 @@ This repository is just the frontend from the entire project and needs the queo-
 * `npm start`
 * navigate in your web browser to `http://localhost:4200`
 
+## Screenshots
+
+![Screenshot of login view](images/login.png "Login View")
+
+![Screenshot of boards overview](images/boards.png "Boards overview")
+
+![Screenshot of board overview](images/board.png "Board overview")

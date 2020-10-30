@@ -1,0 +1,34 @@
+<form
+  class="create-board"
+  [formGroup]="createBoardForm">
+  <div class="form-group create-board__title">
+    <input
+      class="form-control"
+      formControlName="title"
+      placeholder="Board Titel"
+      type="text"
+      autocomplete="off"
+      [maxlength]="maxLength">
+    <boards-theme-select
+      (themeSelect)="handleThemeSelect($event)">
+    </boards-theme-select>
+  </div>
+
+  <div class="form-group">
+    <div class="accessibility-title">
+      Sichtbarkeit
+    </div>
+    <mat-radio-group
+      formControlName="accessibility">
+      <mat-radio-button
+        *ngFor="let accessibility of accessibilityOptions"
+        [value]="accessibility">
+        {{ accessibility | translateAccessibility }}
+      </mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <boards-template-select
+    (templateSelect)="handleTemplateSelect($event)">
+  </boards-template-select>
+</form>

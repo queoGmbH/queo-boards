@@ -1,0 +1,32 @@
+.member {
+  font-size: 20px;
+  font-weight: 500;
+
+  &--no-button {
+    background-color: #eee;
+    display: flex;
+    height: 48px;
+    justify-content: center;
+    min-width: 48px;
+    padding: 0;
+    width: 48px;
+    align-items: center;
+    border-radius: 2px;
+
+    &:hover {
+      cursor: default;
+    }
+  }
+}
+
+.member-edit {
+
+  &__title {
+    font-size: 20px;
+    padding: 8px;
+  }
+
+  &__actions {
+    padding: 8px 8px 0;
+  }
+}

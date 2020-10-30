@@ -1,0 +1,52 @@
+<form
+  [formGroup]="copyCardForm">
+
+  <boards-form-board-select
+    controlName="board"
+    label="Board"
+    [group]="copyCardForm"
+    [items]="boardSummaries$ | async"
+    (change)="handleBoardChange($event)">
+  </boards-form-board-select>
+
+  <div *ngIf="(selectedBoard$ | async)?.lists?.length > 0; else noCopyCard">
+
+    <boards-form-select
+      controlName="list"
+      label="Auf Liste"
+      [group]="copyCardForm"
+      [items]="(selectedBoard$ | async)?.lists"
+      (change)="handleListChange($event)">
+    </boards-form-select>
+
+    <boards-form-select
+      controlName="card"
+      label="Nach Karte"
+      [group]="copyCardForm"
+      [hasStart]="true"
+      [items]="selectedListCards$ | async">
+    </boards-form-select>
+
+    <boards-form-textarea
+      controlName="copyName"
+      [group]="copyCardForm">
+    </boards-form-textarea>
+
+  </div>
+
+  <ng-template #noCopyCard>
+    <div class="copy-error">
+      Kopieren nicht möglich.
+    </div>
+  </ng-template>
+
+  <button
+    mat-raised-button
+    color="primary"
+    type="button"
+    [disabled]="!copyCardForm.valid"
+    (click)="copyCard()">
+    Karte kopieren
+  </button>
+
+</form>

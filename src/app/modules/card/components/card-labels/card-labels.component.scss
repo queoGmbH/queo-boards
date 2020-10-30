@@ -1,0 +1,19 @@
+:host {
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: flex-end;
+}
+
+.card-labels {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+
+    + li {
+      margin-left: 4px;
+    }
+  }
+}

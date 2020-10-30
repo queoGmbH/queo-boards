@@ -1,0 +1,26 @@
+.mat-button {
+  background-color: #eee;
+  text-align: left;
+  width: 100%
+}
+
+.archived-item {
+  align-items: center;
+  display: flex;
+
+  &__select {
+    line-height: 16px;
+    padding: 8px;
+    white-space: initial;
+
+    .date {
+      color: #aaa;
+      font-size: 12px;
+      margin-top: 4px;
+    }
+  }
+
+  &__remove {
+    margin-left: 8px;
+  }
+}

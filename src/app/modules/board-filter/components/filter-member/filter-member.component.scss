@@ -1,0 +1,33 @@
+@import "../../../../../styles/variables";
+
+.filter-member {
+
+  &__members {
+    display: flex;
+    flex-wrap: wrap;
+
+    .mat-button-toggle {
+      background-color: #eee;
+      border-radius: 4px;
+      color: $black-87-opacity;
+      font-size: 20px;
+      font-weight: 500;
+      margin-bottom: 8px;
+      margin-right: 8px;
+
+      &:hover {
+        background-color: $black-12-opacity;
+      }
+
+      &.mat-button-toggle-checked {
+        background-color: $brand-primary;
+        color: #fff;
+
+        &:hover {
+          background-color: $brand-primary;
+          color: #fff;
+        }
+      }
+    }
+  }
+}

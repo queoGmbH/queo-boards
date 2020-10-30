@@ -1,0 +1,132 @@
+<div class="list">
+
+  <div class="list__header">
+    <boards-input-update
+      inputFormControlName="listTitle"
+      inputFormGroupName="listTitleForm"
+      placeholder="Listen Titel..."
+      [maxLength]="75"
+      [value]="list?.title"
+      (update)="handleUpdateListTitle($event)">
+    </boards-input-update>
+
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="listMenu">
+      <mat-icon>
+        more_vert
+      </mat-icon>
+    </button>
+
+    <mat-menu
+      class="list-actions-menu"
+      #listMenu="matMenu"
+      xPosition="before"
+      yPosition="below"
+      (onMenuClose)="reset()">
+
+      <div
+        *ngIf="showMainListMenu"
+        class="main-menu">
+
+        <boards-list-menu-header
+          menuTitle="Listenaktionen"
+          (closeMenu)="handleCloseMenu($event)">
+        </boards-list-menu-header>
+
+        <button
+          mat-menu-item
+          (click)="archiveList(list)">
+          Liste archivieren
+        </button>
+        <button
+          mat-menu-item
+          (click)="toggleCopy($event)">
+          <span>
+            Liste kopieren
+          </span>
+          <mat-icon>
+            keyboard_arrow_right
+          </mat-icon>
+        </button>
+        <button
+          mat-menu-item
+          (click)="toggleMove($event)">
+          <span>
+            Liste verschieben
+          </span>
+          <mat-icon>
+            keyboard_arrow_right
+          </mat-icon>
+
+        </button>
+      </div>
+
+      <div *ngIf="showCopyListMenu">
+        <boards-list-menu-header
+          menuTitle="Liste kopieren"
+          (mainMenu)="handleShowMainMenu($event)"
+          (closeMenu)="handleCloseMenu($event)">
+        </boards-list-menu-header>
+
+        <div class="sub-menu">
+          <boards-copy-list-menu
+            [source]="list"
+            (actionDispatched)="closeMenu()">
+          </boards-copy-list-menu>
+        </div>
+      </div>
+
+      <div *ngIf="showMoveListMenu">
+        <boards-list-menu-header
+          menuTitle="Liste verschieben"
+          (closeMenu)="handleCloseMenu($event)"
+          (mainMenu)="handleShowMainMenu($event)">
+        </boards-list-menu-header>
+
+        <div class="sub-menu">
+          <boards-move-list-menu
+            [source]="list"
+            (actionDispatched)="closeMenu()">
+          </boards-move-list-menu>
+        </div>
+      </div>
+
+    </mat-menu>
+
+  </div>
+
+  <div
+    #listContent
+    class="list__content">
+    <div
+      class="cards"
+      [dragula]='"card-bag"'
+      [attr.listId]="list?.businessId">
+      <div
+        *ngFor="let card of filteredCards$ | async; trackBy:trackByBusinessId"
+        boardsDelayDragLift
+        class="card"
+        [attr.cardId]="card.businessId"
+        [attr.pos]="card.position">
+        <boards-card
+          [boardId]="(board$ | async)?.businessId"
+          [cardId]="card?.businessId">
+        </boards-card>
+      </div>
+    </div>
+  </div>
+
+  <div class="list__footer" *ngIf="list?.title">
+    <boards-input-create
+      inputFormControlName="cardTitle"
+      inputFormGroupName="cardForm"
+      placeholder="Karte hinzufügen..."
+      [maxLength]="75"
+      (createAndOpen)="handleCreateAndOpenCard($event)"
+      (create)="handleCreateCard($event)">
+    </boards-input-create>
+  </div>
+
+</div>
+

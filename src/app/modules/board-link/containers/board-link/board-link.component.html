@@ -1,0 +1,53 @@
+<div
+  *ngIf="boardSummary; else createBoardSummary"
+  class="board-link">
+  <div
+    class="board-link__border hidden-xs-down"
+    [style.background-color]="boardSummary?.colorScheme | borderColor">
+  </div>
+  <button
+    class="board-link__button"
+    mat-raised-button
+    [disabled]="disableButton"
+    [style.background-color]="boardSummary?.colorScheme | color"
+    (click)="navigateToBoard()">
+    <div class="content hidden-xs-down">
+      <mat-icon
+        *ngIf="boardSummary?.isPrivate">
+        lock_outline
+      </mat-icon>
+      <div>
+        {{ boardSummary?.title }}
+      </div>
+    </div>
+  </button>
+  <div
+    class="content hidden-sm-up"
+    matRipple
+    [routerLink]="['/board', boardSummary?.businessId]">
+    <span>
+      {{ boardSummary?.title }}
+    </span>
+    <mat-icon
+      *ngIf="boardSummary?.isPrivate">
+      lock_outline
+    </mat-icon>
+  </div>
+</div>
+
+<ng-template #createBoardSummary>
+  <div class="board-link">
+    <button
+      class="board-link__button"
+      color="primary"
+      mat-raised-button
+      (click)="onOpenCreateBoardDialog()">
+      <span class="content hidden-xs-down">
+        Neues Board...
+      </span>
+    </button>
+    <span class="content hidden-sm-up" (click)="onOpenCreateBoardDialog()">
+      Neues Board...
+    </span>
+  </div>
+</ng-template>

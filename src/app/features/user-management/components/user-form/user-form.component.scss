@@ -1,0 +1,27 @@
+$form-margin : 16px;
+
+.board-form {
+
+  &__actions {
+    margin-top: $form-margin;
+
+    button + button {
+      margin-left: $form-margin/2;
+    }
+  }
+}
+
+mat-icon {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.slider-reset-password {
+  margin-bottom: $form-margin;
+}
+
+.password-form {
+  margin-top: $form-margin*2;
+}
+

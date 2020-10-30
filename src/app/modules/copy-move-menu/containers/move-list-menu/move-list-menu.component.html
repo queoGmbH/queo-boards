@@ -1,0 +1,29 @@
+<form
+  [formGroup]="moveListForm">
+
+  <boards-form-board-select
+    controlName="board"
+    label="Board"
+    [group]="moveListForm"
+    [items]="boardSummaries$ | async"
+    (change)="handleBoardChange($event)">
+  </boards-form-board-select>
+
+  <boards-form-select
+    controlName="list"
+    label="Nach Liste"
+    [group]="moveListForm"
+    [hasStart]="true"
+    [items]="lists | async">
+  </boards-form-select>
+
+  <button
+    mat-raised-button
+    color="primary"
+    type="button"
+    [disabled]="!moveListForm.valid"
+    (click)="moveList()">
+    Liste verschieben
+  </button>
+
+</form>

@@ -1,0 +1,32 @@
+.queo-logo {
+  height: 36px;
+}
+
+address {
+  font-style: normal;
+  margin-top: 16px;
+}
+
+.version {
+  margin-top: 16px;
+}
+
+.help-dialog {
+  &__title {
+    margin-top: 16px;
+    font: 300 20px/32px Roboto, "Helvetica Neue", sans-serif;
+    text-transform: uppercase;
+  }
+
+  &__content {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+  }
+
+  &__actions {
+    justify-content: flex-end;
+    margin-bottom: -16px;
+    min-height: 0;
+    padding: 16px 0;
+  }
+}

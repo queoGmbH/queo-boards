@@ -1,0 +1,54 @@
+<div
+  class="members">
+  <h2>
+    Eigentümer
+  </h2>
+
+  <ul class="members__list">
+    <li *ngFor="let owner of (board$ | async)?.owners">
+      <boards-member
+        [member]="owner"
+        [owners]="(board$ | async)?.owners"
+        [currentUser]="currentUser$ | async"
+        [canRemove]="(currentBoardRoles$ | async)?.includes(BOARD_OWNER) ||
+                     (currentUser$ | async)?.roles.includes(ROLE_ADMIN)"
+        (removeMember)="handleRemoveOwner($event)">
+      </boards-member>
+    </li>
+    <li *ngIf="(currentBoardRoles$ | async)?.includes(BOARD_OWNER) ||
+               (currentUser$ | async)?.roles.includes(ROLE_ADMIN)">
+      <boards-user-search
+        [users]="users$ | async"
+        (addMember)="handleAddOwner($event)">
+      </boards-user-search>
+    </li>
+  </ul>
+
+</div>
+
+<div class="members">
+
+  <h2>
+    Mitglieder
+  </h2>
+
+  <ul class="members__list">
+    <li *ngFor="let member of members">
+      <boards-member
+        [member]="member"
+        [canRemove]="(currentBoardRoles$ | async)?.includes(BOARD_OWNER) ||
+                     (currentUser$ | async)?.roles.includes(ROLE_ADMIN)"
+        (removeMember)="handleRemoveMember($event)">
+      </boards-member>
+    </li>
+
+    <li *ngIf="(currentBoardRoles$ | async)?.includes(BOARD_OWNER) ||
+               (currentUser$ | async)?.roles.includes(ROLE_ADMIN)">
+      <boards-user-search
+        [users]="users"
+        (addMember)="handleAddMember($event)">
+      </boards-user-search>
+    </li>
+  </ul>
+
+</div>

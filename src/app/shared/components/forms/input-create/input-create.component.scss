@@ -1,0 +1,17 @@
+@import "../../../../../styles/variables";
+
+:host {
+  display: block;
+  min-height: 40px;
+  width: 100%;
+
+  > form {
+    align-items: center;
+    display: flex;
+
+    textarea {
+      line-height: 20px;
+      resize: none;
+    }
+  }
+}

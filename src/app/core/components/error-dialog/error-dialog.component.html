@@ -1,0 +1,28 @@
+<h2 matDialogTitle>
+  {{ title }}
+</h2>
+
+<mat-dialog-content>
+  {{ message }}
+
+  <pre
+    *ngIf="showErrorMessage"
+    class="error-message">
+    {{ errorMessage }}
+  </pre>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+
+  <button
+    type="button"
+    mat-raised-button
+    matDialogClose
+    color="primary"
+    (click)="reload()">
+    {{ textReload }}
+  </button>
+
+</mat-dialog-actions>
+
+

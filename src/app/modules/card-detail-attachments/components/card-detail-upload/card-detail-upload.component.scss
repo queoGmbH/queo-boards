@@ -1,0 +1,16 @@
+.upload-attachment {
+  align-items: center;
+  display: flex;
+
+  .error {
+    align-items: center;
+    color: red;
+    display: flex;
+    font-size: 16px;
+
+    button {
+      color: rgba(0, 0, 0, 0.87);
+      margin-left: 8px;
+    }
+  }
+}

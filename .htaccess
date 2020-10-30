@@ -1,0 +1,10 @@
+RewriteEngine on
+
+RewriteCond %{HTTP_HOST} ^(www.)?([a-z0-0-]*).dev.(queo-group\.com|queo\.org)$
+RewriteCond %{REQUEST_URI} !^/dist
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /dist/queo-boards/$1
+
+RewriteCond %{HTTP_HOST} ^(www.)?([a-z0-0-]*).dev.(queo-group\.com|queo\.org)$
+RewriteRule ^(/)?$ dist/queo-boards/index.html [L]

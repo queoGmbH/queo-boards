@@ -1,0 +1,58 @@
+<button
+  class="mat-dark"
+  mat-icon-button
+  [matMenuTriggerFor]="boardLabelSelectMenu"
+  (onMenuClose)="onBoardLabelSelectMenuClose()">
+  <mat-icon>add</mat-icon>
+</button>
+
+<mat-menu
+  #boardLabelSelectMenu="matMenu"
+  class="menu-card-label-select"
+  xPosition="before"
+  yPosition="below"
+  [overlapTrigger]="false">
+
+  <div *ngIf="(board$ | async)?.labels?.length > 0 && !addLabel">
+    <mat-button-toggle-group
+      multiple
+      vertical>
+      <mat-button-toggle
+        *ngFor="let boardLabel of (board$ | async)?.labels"
+        class="mat-button-toggle--label-color"
+        [checked]="isCardLabel(boardLabel)"
+        [style.backgroundColor]="boardLabel?.color"
+        [value]="boardLabel"
+        (change)="onBoardLabelSelect($event)"
+        (click)="$event.stopPropagation()">
+        <div class="card-label-select-toggle">
+          {{ boardLabel.name }}
+          <mat-icon>
+            check
+          </mat-icon>
+        </div>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+    <div
+      class="create-board-label">
+      <button
+        mat-button
+        (click)="toggleCreateBoardLabel($event)">
+        Label anlegen...
+      </button>
+    </div>
+  </div>
+
+  <div
+    *ngIf="!((board$ | async)?.labels?.length > 0) || addLabel"
+    (click)="$event.stopPropagation()"
+    class="create-board-label-form">
+    <boards-board-label-form
+      [editBoardLabel]="false"
+      [labelColors]="labelColors"
+      [setFocus]="true"
+      (createBoardLabel)="handleCreateBoardLabel($event)"
+      (resetEdit)="cancelCreateLabel($event)">
+    </boards-board-label-form>
+  </div>
+</mat-menu>

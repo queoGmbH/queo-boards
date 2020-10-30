@@ -1,0 +1,164 @@
+<div
+  cdkTrapFocus
+  class="dialog dialog--card-detail">
+
+  <div class="dialog__header mat-elevation-z2">
+    <form
+      class="title-form"
+      [formGroup]="titleForm">
+      <textarea
+        boardsAutoResizeTextarea
+        class="form-control form-control--themed card-title"
+        formControlName="title"
+        maxlength="75"
+        rows="1"
+        spellcheck="false"
+        (keyup.enter)="updateCardTitle()">
+      </textarea>
+      <button
+        *ngIf="titleForm?.valid && titleChanged"
+        mat-icon-button
+        color="primary"
+        (click)="updateCardTitle()">
+        <mat-icon>check</mat-icon>
+      </button>
+    </form>
+
+    <button
+      matDialogClose
+      mat-icon-button>
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <mat-dialog-content
+    #content
+    class="dialog__content">
+    <div class="content-header">
+      <div class="content-header__info">
+
+        <div class="list-title">
+          in Liste "{{ card?.list?.title }}"
+        </div>
+
+        <boards-card-members
+          [cardId]="card?.businessId">
+        </boards-card-members>
+
+        <boards-card-detail-due-date-label
+          *ngIf="card?.due"
+          [cardId]="card?.businessId"
+          [dueDate]="card?.due"
+          [details]="true"
+          (updateDueDate)="toggleDueDate($event)">
+        </boards-card-detail-due-date-label>
+
+        <div id="createCardDetailDueDateForm">
+          <boards-card-detail-due-date
+            *ngIf="(!card?.due)||(editDueDate)"
+            [ngClass]="{'component-title':!card?.due}"
+            [card]="card"
+            (toggleForm)="toggleDueDate($event)">
+          </boards-card-detail-due-date>
+        </div>
+
+        <boards-card-detail-description
+          [cardId]="card?.businessId">
+        </boards-card-detail-description>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="content__attachments col-12 col-sm-6">
+        <boards-card-detail-attachments
+          [card]="card">
+        </boards-card-detail-attachments>
+      </div>
+
+      <div class="content__labels col-12 col-sm-6">
+        <boards-card-labels
+          [card]="card">
+        </boards-card-labels>
+      </div>
+    </div>
+
+    <boards-card-detail-checklists
+      [boardId]="(board$ | async)?.businessId"
+      [cardId]="card?.businessId">
+    </boards-card-detail-checklists>
+
+    <boards-card-detail-comments
+      [card]="card">
+    </boards-card-detail-comments>
+
+  </mat-dialog-content>
+
+  <mat-dialog-actions class="dialog__actions">
+
+    <div class="nav">
+      <button mat-button type="button" (click)="archiveCard(card)">
+        <mat-icon>archive</mat-icon>
+        <span class="hidden-sm-down">Archiv</span>
+      </button>
+
+      <button mat-button [matMenuTriggerFor]="moveCard">
+        <mat-icon>content_copy</mat-icon>
+        <span class="hidden-sm-down">Karte verschieben</span>
+      </button>
+
+      <button mat-button [matMenuTriggerFor]="copyCard">
+        <mat-icon>content_copy</mat-icon>
+        <span class="hidden-sm-down">Karte kopieren</span>
+      </button>
+    </div>
+
+    <mat-menu
+      #moveCard="matMenu"
+      class="move-card-menu"
+      xPosition="before"
+      yPosition="above">
+      <div class="menu-title">
+        <div
+          class="menu-title--text"
+          (click)="$event.stopPropagation()">
+          Karte verschieben
+        </div>
+        <button
+          mat-icon-button>
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+
+      <boards-move-card-menu
+        [source]="card"
+        (actionDispatched)="handleMoveCard($event)">
+      </boards-move-card-menu>
+    </mat-menu>
+
+    <mat-menu
+      #copyCard="matMenu"
+      class="copy-card-menu"
+      xPosition="before"
+      yPosition="above">
+      <div class="menu-title">
+        <div
+          class="menu-title--text"
+          (click)="$event.stopPropagation()">
+          Karte kopieren
+        </div>
+        <button mat-icon-button>
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+
+      <boards-copy-card-menu
+        [source]="card"
+        (actionDispatched)="handleCopyCard($event)">
+      </boards-copy-card-menu>
+    </mat-menu>
+
+  </mat-dialog-actions>
+
+
+</div>

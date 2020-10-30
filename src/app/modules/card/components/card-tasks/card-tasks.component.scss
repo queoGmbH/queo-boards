@@ -1,0 +1,10 @@
+.card-tasks {
+  align-items: center;
+  display: flex;
+  min-height: 32px;
+
+  &__counter {
+    font-size: 12px;
+    margin-left: 4px;
+  }
+}

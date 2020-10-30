@@ -1,0 +1,32 @@
+<div class="team-members">
+
+  <h1>{{ (team$ | async )?.name }}</h1>
+
+  <boards-team-member-list
+    [members]="(team$ | async)?.members"
+    (removeMember)="handleRemoveMember($event)">
+  </boards-team-member-list>
+
+  <div class="new-members">
+    <h1>Miglieder hinzufügen</h1>
+
+    <boards-user-search
+      [users]="users$ | async"
+      (addMember)="handleAddMember($event)">
+    </boards-user-search>
+  </div>
+
+  <boards-team-member-list
+    [members]="newMembers"
+    (removeMember)="handleRemoveNewMember($event)">
+  </boards-team-member-list>
+
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="newMembers.length < 1"
+    (click)="addMembers()">
+    Mitglieder hinzufügen
+  </button>
+
+</div>

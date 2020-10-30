@@ -1,0 +1,25 @@
+<div class="dialog dialog--create-board">
+  <div class="dialog__header">
+      Neues Board
+  </div>
+
+  <mat-dialog-content class="dialog__content">
+    <boards-board-form
+      [data]="data"
+      (formChange)="handleFormChange($event)">
+    </boards-board-form>
+  </mat-dialog-content>
+
+  <mat-dialog-actions class="dialog__actions">
+    <button mat-button matDialogClose>
+      Abbrechen
+    </button>
+    <button
+      color="primary"
+      mat-raised-button
+      [disabled]="!formValid"
+      [matDialogClose]="createBoard()">
+      Speichern
+    </button>
+  </mat-dialog-actions>
+</div>

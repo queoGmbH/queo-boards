@@ -1,0 +1,41 @@
+<div class="container-fluid">
+
+  <h1>Benutzerverwaltung</h1>
+
+  <mat-tab-group #tabGroupUser
+    [(selectedIndex)]="selectedIndex"
+    (selectedIndexChange)="selectedIndexChange($event)">
+
+    <mat-tab label="Benutzer">
+      <boards-user-list
+        [users]="users$ | async"
+        (userSelect)="handleUserSelect($event)">
+      </boards-user-list>
+    </mat-tab>
+
+    <mat-tab label="Benutzer hinzufügen / bearbeiten">
+      <mat-card>
+        <div
+          *ngIf="numberOfMaxUsers !== 0 && !selectedUser"
+          [ngClass]="{
+            'max-user--pull-right': numberOfMaxUsers > (users$ | async)?.length,
+            'max-user--danger': numberOfMaxUsers-(users$ | async)?.length < 3,
+            'max-user--center': numberOfMaxUsers === (users$ | async)?.length
+            }">
+          Begrenzte Nutzeranzahl: ({{(users$ | async)?.length}}/{{numberOfMaxUsers}})<br>
+          <span *ngIf="numberOfMaxUsers === (users$ | async)?.length">
+            Es können keine neuen Nutzer hinzugefügt werden!
+          </span>
+        </div>
+        <boards-user-form
+          [disabled]="numberOfMaxUsers === (users$ | async)?.length"
+          [selectedUser]="selectedUser"
+          (createUser)="handleCreateUser($event)"
+          (updateUser)="handleUpdateUser($event)"
+          (updatePassword)="handleUpdatePassword($event)"
+          (cancel)="handleCancel()">
+        </boards-user-form>
+      </mat-card>
+    </mat-tab>
+  </mat-tab-group>
+</div>

@@ -1,0 +1,42 @@
+<div class="login container-fluid">
+
+  <div *ngIf="showError" class="alert alert-danger d-flex align-items-center" role="alert">
+    <mat-icon>warning</mat-icon>
+    <p class="ml-3 mb-0">Die Kombination aus Benutzerkennung und Passwort konnte nicht identifiziert werden.</p>
+  </div>
+
+  <mat-card class="login-form">
+    <mat-card-title>
+      Login
+    </mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="loginForm">
+        <div class="form-group">
+          <label>Benutzerkennung:
+            <input
+              class="form-control"
+              formControlName="login"
+              autocorrect="off"
+              autocapitalize="none">
+          </label>
+        </div>
+        <div class="form-group">
+          <label>Passwort:
+            <input
+              class="form-control"
+              type="password"
+              formControlName="password">
+          </label>
+        </div>
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          (click)="login()">
+          Anmelden
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  <!--<button (click)="testAuth()">TestAuth</button>-->
+</div>

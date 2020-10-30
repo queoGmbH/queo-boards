@@ -1,0 +1,48 @@
+<div class="card-detail-description">
+  <div class="card-detail-description__title component-title">
+    Beschreibung
+  </div>
+
+  <button
+    *ngIf="!editDescription; else showEditDescription"
+    mat-button
+    class="description"
+    (click)="edit()">
+    <div
+      class="description__content"
+      [innerHtml]="(card$ | async)?.description | htmlify">
+    </div>
+  </button>
+
+  <ng-template #showEditDescription>
+    <form [formGroup]="descriptionForm">
+      <textarea
+        boardsAutoResizeTextarea
+        rows="1"
+        class="form-control"
+        formControlName="description"
+        placeholder="Beschreibung hinzufügen..."
+        spellcheck="false">
+      </textarea>
+
+      <div class="buttons-description">
+        <button
+          mat-raised-button
+          color="primary"
+          type="button"
+          (click)="updateCardDescription()"
+          [disabled]="!descriptionChanged">
+          Speichern
+        </button>
+        <button
+          class="mat-dark mat-dark--dimmed"
+          type="button"
+          (click)="cancelUpdateCardDescription()"
+          mat-icon-button>
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    </form>
+  </ng-template>
+
+</div>

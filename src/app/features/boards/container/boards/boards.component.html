@@ -1,0 +1,90 @@
+<mat-sidenav-container class="sidenav-container">
+
+  <div class="page">
+
+    <div class="page__header">
+      <div class="title">
+        Meine Boards
+      </div>
+
+      <button mat-icon-button (click)="sidenavBoards.open()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+
+    <div class="page__content">
+      <div class="row">
+        <div class="col-12">
+          <h2>Eingeschränkt</h2>
+        </div>
+        <boards-board-link
+          (openCreateBoardDialog)="handleOpenCreateBoardDialog('Restricted')">
+        </boards-board-link>
+        <boards-board-link
+          *ngFor="let boardSummary of boardSummaries$ | async | accessibility : 'Restricted'"
+          [boardSummary]="boardSummary">
+        </boards-board-link>
+      </div>
+      <div class="row mt-4">
+        <div class="col-12">
+          <h2>Öffentlich</h2>
+        </div>
+
+        <boards-board-link
+          (openCreateBoardDialog)="handleOpenCreateBoardDialog('Public')">
+        </boards-board-link>
+
+        <boards-board-link
+          *ngFor="let boardSummary of boardSummaries$ | async | accessibility : 'Public'"
+          [boardSummary]="boardSummary">
+        </boards-board-link>
+      </div>
+    </div>
+
+  </div>
+
+  <mat-sidenav
+    #sidenavBoards
+    class="sidenav"
+    mode="over"
+    opened="false"
+    position="end">
+
+    <mat-toolbar class="sidenav__toolbar">
+      Einstellungen
+      <span class="flex-stretch"></span>
+      <button
+        mat-icon-button
+        (click)="sidenavBoards.close()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <div class="content-wrapper">
+      <div class="sidenav__content">
+        <mat-tab-group>
+
+          <mat-tab label="Archiv">
+            <ng-template matTabContent>
+              <div class="wrapper">
+                <boards-archive-boards></boards-archive-boards>
+              </div>
+            </ng-template>
+          </mat-tab>
+
+          <mat-tab
+            *ngIf="(currentUser$ | async)?.roles.includes(ROLE_ADMIN)"
+            label="Vorlagen">
+            <ng-template matTabContent>
+              <div class="wrapper">
+                <boards-templates></boards-templates>
+              </div>
+            </ng-template>
+          </mat-tab>
+
+        </mat-tab-group>
+      </div>
+    </div>
+  </mat-sidenav>
+
+</mat-sidenav-container>

@@ -1,0 +1,27 @@
+<div class="due-date-label" [ngClass]="labelClass">
+  <div
+    *ngIf="details"
+    class="due-date-label__title">
+    Fällig am:
+  </div>
+
+  <span
+    class="due-date-label__time"
+    [ngClass]="dueDateBackGroundColor"
+    (click)="editDueDate()">
+    <mat-icon
+      *ngIf="!details"
+      class="md-dark">
+      timelapse
+    </mat-icon>
+    {{ displayDate }}
+    <button
+    class="mat-dark mat-dark--dimmed"
+    mat-icon-button
+    (click)="removeDueDate($event)">
+      <mat-icon>
+        close
+      </mat-icon>
+    </button>
+  </span>
+</div>

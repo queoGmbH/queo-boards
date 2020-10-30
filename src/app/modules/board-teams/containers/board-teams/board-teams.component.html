@@ -1,0 +1,22 @@
+<div class="board-teams">
+  <h2>Teams</h2>
+
+  <ng-content select="boards-team-select"></ng-content>
+
+  <ul
+    *ngIf="(boardTeams$ | async).length > 0; else noBoardTeams"
+    class="board-teams__list">
+    <li *ngFor="let boardTeam of boardTeams$ | async">
+      <boards-board-team
+        [boardTeam]="boardTeam"
+        (removeBoardTeam)="handleRemoveBoardTeam($event)">
+      </boards-board-team>
+    </li>
+  </ul>
+
+  <ng-template #noBoardTeams>
+    <h3>Keine Teams...</h3>
+  </ng-template>
+
+</div>
+

@@ -1,0 +1,41 @@
+@import '~@angular/material/theming';
+
+:host {
+  @include mat-elevation(2);
+
+  display: block;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.logo {
+  height: 100%;
+  display: flex;
+  align-items: center;
+
+  img {
+    display: block;
+    height: 24px;
+    width: auto;
+  }
+}
+
+.navigation {
+  align-items: center;
+  display: flex;
+
+  > * {
+    margin-right: 8px;
+  }
+}
+
+.items {
+  align-items: center;
+  display: flex;
+}
+
+.active-link {
+  background-color: #ddd;
+}

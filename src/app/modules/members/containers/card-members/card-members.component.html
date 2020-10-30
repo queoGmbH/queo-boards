@@ -1,0 +1,26 @@
+<div class="members">
+
+  <h2>
+    Mitglieder
+  </h2>
+
+  <ul class="members__list">
+    <!--TODO: do not allow everyone to remove members-->
+    <li *ngFor="let member of members">
+      <boards-member
+        [member]="member"
+        [canRemove]="true"
+        (removeMember)="handleRemoveMember($event)">
+      </boards-member>
+    </li>
+
+    <!--TODO: do not allow everyone to add members-->
+    <li *ngIf="true">
+      <boards-user-search
+        [users]="users"
+        (addMember)="handleAddMember($event)">
+      </boards-user-search>
+    </li>
+  </ul>
+
+</div>

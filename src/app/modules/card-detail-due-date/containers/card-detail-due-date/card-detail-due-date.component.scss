@@ -1,0 +1,39 @@
+.due-date {
+  margin-bottom: 16px;
+
+  &__content {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+
+    > form {
+      width: 100%;
+    }
+  }
+
+  &__action {
+    margin-top: 8px;
+  }
+}
+
+input.error {
+
+  &:not(.ng-pristine) {
+    border-color: red;
+  }
+}
+
+.due-date-date {
+  display: flex;
+  justify-content: flex-start;
+
+  .form-control {
+    width: 140px;
+  }
+
+  .due-date-time {
+    text-align: center;
+    width: 60px;
+    margin-left: 8px;
+  }
+}

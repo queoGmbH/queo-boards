@@ -1,0 +1,17 @@
+<div
+  *ngIf="tasks > 0"
+  class="card-detail-checklist-progress">
+
+  <div class="card-detail-checklist-progress__counter">
+    {{ tasksDone }}/{{ tasks }}
+  </div>
+
+  <mat-progress-bar
+    mode="determinate"
+    [color]="color"
+    [value]="value">
+  </mat-progress-bar>
+
+</div>
+
+

@@ -1,0 +1,35 @@
+.card-detail-comment {
+  margin-top: 16px;
+
+  &__info {
+    display: flex;
+    font-weight: 500;
+    justify-content: space-between;
+    margin-bottom: 4px;
+  }
+
+  &__text {
+    background-color: #eee;
+    border-radius: 2px;
+    hyphens: auto;
+    overflow-wrap: break-word;
+    padding: 8px;
+    word-wrap: break-word;
+
+    textarea {
+      resize: none;
+    }
+
+    .edit-actions {
+      margin-top: 8px;
+    }
+  }
+
+  &__details {
+    display: flex;
+    font-size: 12px;
+    justify-content: flex-end;
+    margin-top: 8px;
+  }
+
+}

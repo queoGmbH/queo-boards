@@ -1,0 +1,53 @@
+<form
+  class="update-board"
+  [formGroup]="updateBoardSummaryForm">
+  <div class="form-group update-board__title">
+    <input
+      class="form-control"
+      formControlName="title"
+      placeholder="Board Titel"
+      type="text"
+      autocomplete="off"
+      maxlength="60">
+    <boards-theme-select
+      [selectedTheme]="(boardSummary$ | async)?.colorScheme"
+      (themeSelect)="handleThemeSelect($event)">
+    </boards-theme-select>
+  </div>
+  <div class="form-group">
+    <div class="form-label">
+      Sichtbarkeit
+    </div>
+    <mat-radio-group
+      formControlName="accessibility">
+      <mat-radio-button
+        *ngFor="let accessibility of accessibilityOptions"
+        [value]="accessibility">
+        {{ accessibility | translateAccessibility }}
+      </mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <div class="update-board__action">
+    <div>
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="!updateBoardSummaryForm.valid || !changed"
+        (click)="onUpdateBoardSummary()">
+        Speichern
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="!updateBoardSummaryForm.valid || changed"
+        (click)="archiveBoard()">
+        Archivieren
+      </button>
+    </div>
+
+    <!--only ROLE_ADMIN can create templates-->
+    <boards-template-create *ngIf="(currentUser$ | async)?.roles.includes(ROLE_ADMIN)">
+    </boards-template-create>
+  </div>
+</form>

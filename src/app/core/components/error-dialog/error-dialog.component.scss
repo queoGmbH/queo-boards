@@ -1,0 +1,27 @@
+@import '~@angular/material/theming';
+
+.mat-dialog-title {
+  margin: 16px 0 0;
+}
+
+.error-message {
+  background-color: mat-color($mat-grey, A200);
+  border-radius: 2px;
+  margin: 16px 0 0;
+  overflow: auto;
+  padding: 16px;
+  white-space: normal;
+}
+
+mat-dialog-actions {
+
+  &.mat-dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 0 16px;
+
+    > * {
+      margin-left: 16px;
+    }
+  }
+}

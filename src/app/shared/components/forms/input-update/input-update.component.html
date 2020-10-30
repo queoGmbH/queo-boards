@@ -1,0 +1,28 @@
+<form
+  novalidate
+  [formGroup]="inputFormGroup">
+  <textarea
+    boardsAutoResizeTextarea
+    class="form-control form-control--themed"
+    rows="1"
+    spellcheck="false"
+    type="text"
+    [formControlName]="inputFormControlName"
+    [maxlength]="maxLength"
+    [placeholder]="placeholder"
+    (keydown.enter)="onUpdate($event)">
+  </textarea>
+  <button
+    *ngIf="changed"
+    mat-icon-button
+    type="button"
+    [disabled]="!inputFormGroup.valid"
+    [disableRipple]="true"
+    (click)="onUpdate($event)">
+    <mat-icon
+      *ngIf="inputFormGroup.valid && !inputFormGroup.pristine"
+      color="primary">
+      check
+    </mat-icon>
+  </button>
+</form>

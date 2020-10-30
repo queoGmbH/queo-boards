@@ -1,0 +1,10 @@
+.team-select {
+  align-items: flex-end;
+  display: flex;
+  justify-content: space-between;
+
+  &__add {
+    // same as mat-form-field-wrapper
+    padding-bottom: 1.25em;
+  }
+}

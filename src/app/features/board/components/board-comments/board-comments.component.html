@@ -1,0 +1,36 @@
+<div
+  *ngIf="(boardComments$ | async)?.length > 0"
+  class="board-comments">
+  <div class="board-comments__title">
+    Kommentare
+  </div>
+  <ul class="board-comments__list">
+    <li *ngFor="let comment of (boardComments$ | async) | slice : 0 : show; let i = index">
+      <button
+        mat-button
+        class="board-comment"
+        (click)="openCard(comment)">
+        <div class="board-comment__info">
+        <span class="card-title">
+          {{ comment?.card?.title }}
+        </span>
+        <span>
+          {{ comment?.createdAt | commentDate }}
+        </span>
+        </div>
+        <div class="board-comment__text">
+          <span class="username">{{ comment?.createdBy | userName }}: </span>
+          <span>{{ comment?.text }}</span>
+        </div>
+      </button>
+      <button
+        *ngIf="(i + 1) === show"
+        mat-raised-button
+        color="primary"
+        [disabled]="(i + 1) === commentCount"
+        (click)="showMore(i)">
+        Mehr laden...
+      </button>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,10 @@
+<ul
+  *ngIf="showLabels"
+  class="card-labels">
+  <li *ngFor="let cardLabel of assignedLabels">
+    <boards-card-label
+      [cardLabel]="cardLabel">
+    </boards-card-label>
+  </li>
+</ul>
+

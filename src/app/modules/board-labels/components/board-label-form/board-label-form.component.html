@@ -1,0 +1,72 @@
+<div class="board-label-form-title">
+  <h2 *ngIf="editBoardLabel">
+    Label bearbeiten
+  </h2>
+  <h2 *ngIf="!editBoardLabel">
+    Label anlegen
+  </h2>
+</div>
+
+<form
+  class="board-labels-form"
+  [formGroup]="boardLabelForm">
+
+  <input
+    #labelName
+    class="board-labels-form__name form-control form-control--visible"
+    formControlName="name"
+    placeholder="Name"
+    autocomplete="off"
+    type="text"
+    (keydown.enter)="!editBoardLabel ? onCreateBoardLabel($event) : onUpdateBoardLabel()">
+
+  <mat-button-toggle-group
+    #labelColorToggleGroup="matButtonToggleGroup"
+    class="board-labels-form__colors"
+    name="labelColorSelect"
+    [value]="selectedColor"
+    (change)="onLabelColorSelect($event)">
+
+        <mat-button-toggle
+          class="mat-button-toggle--label-color"
+          *ngFor="let labelColor of labelColors"
+          [checked]="labelColor?.color === selectedColor"
+          [style.backgroundColor]="labelColor?.color"
+          [value]="labelColor?.color">
+
+          <div class="label-icon">
+            <mat-icon>check</mat-icon>
+          </div>
+
+        </mat-button-toggle>
+
+  </mat-button-toggle-group>
+
+  <div class="board-labels-form__buttons">
+    <button
+      mat-raised-button
+      color="primary"
+      type="button"
+      [disabled]="!boardLabelForm.valid"
+      (click)="!editBoardLabel ? onCreateBoardLabel($event) : onUpdateBoardLabel()">
+      Speichern
+    </button>
+    <button
+      *ngIf="editBoardLabel"
+      mat-raised-button
+      color="warn"
+      type="button"
+      (click)="onRemoveBoardLabel($event)">
+      Löschen
+    </button>
+    <button
+      class="mat-dark mat-dark--dimmed"
+      mat-icon-button
+      (click)="cancel($event)">
+      <mat-icon>
+        close
+      </mat-icon>
+    </button>
+  </div>
+
+</form>

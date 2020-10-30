@@ -1,0 +1,19 @@
+.card-label-select-toggle {
+  align-items: center;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  line-height: 36px;
+}
+
+.create-board-label-form {
+  padding: 16px;
+}
+
+.create-board-label {
+
+  > button {
+    text-align: left;
+    width: 100%;
+  }
+}

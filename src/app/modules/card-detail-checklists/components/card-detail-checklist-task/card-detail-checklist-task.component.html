@@ -1,0 +1,13 @@
+<mat-checkbox
+  [checked]="(cardChecklistTask$ | async)?.isDone"
+  (change)="onCardChecklistTaskIsDoneChange($event)">
+</mat-checkbox>
+<div class="checklist-task-title">
+  {{ cardChecklistTask?.title }}
+</div>
+<button
+  mat-icon-button
+  class="mat-dark mat-dark--dimmed"
+  (click)="onRemoveCardChecklistTask()">
+  <mat-icon>close</mat-icon>
+</button>

@@ -1,0 +1,19 @@
+<mat-button-toggle-group
+  #toggleGroup="matButtonToggleGroup"
+  multiple
+  vertical>
+  <mat-button-toggle
+    *ngFor="let boardLabel of board.labels"
+    class="mat-button-toggle--label-color"
+    [checked]="getSelected(boardLabel)"
+    [style.backgroundColor]="boardLabel?.color"
+    [value]="boardLabel"
+    (change)="onBoardLabelSelect($event)">
+    <div class="board-label-toggle">
+      {{ boardLabel.name }}
+      <mat-icon>
+        check
+      </mat-icon>
+    </div>
+  </mat-button-toggle>
+</mat-button-toggle-group>

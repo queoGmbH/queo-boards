@@ -1,0 +1,22 @@
+<div
+  *ngIf="(boardArchive$ | async)?.length > 0; else noArchivedBoards"
+  class="archive">
+  <h2>Boards</h2>
+  <ul class="archive__list">
+    <li *ngFor="let archivedBoard of boardArchive$ | async; trackBy:trackByBusinessId">
+
+      <boards-archived-item
+        archiveType="BOARD"
+        [canChange]="true"
+        [item]="archivedBoard"
+        (remove)="handleRemoveBoard($event)"
+        (restore)="handleRestoreBoard($event)">
+      </boards-archived-item>
+
+    </li>
+  </ul>
+</div>
+
+<ng-template #noArchivedBoards>
+  <h3>Keine archivierten Boards...</h3>
+</ng-template>

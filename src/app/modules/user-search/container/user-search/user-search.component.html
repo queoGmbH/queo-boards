@@ -1,0 +1,39 @@
+<div>
+  <button
+    class="square-button"
+    mat-button
+    matTooltip="Nutzer suchen..."
+    [matMenuTriggerFor]="memberMenu"
+    (onMenuOpen)="focusSearchInput()">
+    <mat-icon>
+      person_add
+    </mat-icon>
+  </button>
+
+  <mat-menu
+    #memberMenu="matMenu"
+    class="members-menu"
+    [overlapTrigger]="false">
+    <form
+      class="members-menu__search"
+      [formGroup]="userSearch">
+      <input
+        #searchInput
+        class="form-control"
+        formControlName="user"
+        [matAutocomplete]="memberSearch"
+        placeholder="Nutzer suchen..."
+        type="text"
+        (click)="$event.stopPropagation()">
+    </form>
+    <mat-autocomplete
+      #memberSearch="matAutocomplete"
+      [displayWith]="displayUser">
+      <mat-option
+        *ngFor="let user of filteredUsers | async"
+        [value]="user">
+        {{ user | userName }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-menu>
+</div>

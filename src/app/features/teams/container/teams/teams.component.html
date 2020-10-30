@@ -1,0 +1,89 @@
+<mat-sidenav-container class="sidenav-container">
+
+  <div class="page">
+
+    <div class="page__header">
+      <div class="title">
+        Teams
+      </div>
+      <button
+        mat-icon-button
+        (click)="sidenavBoards.open()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+
+    <div class="page__content">
+
+      <div
+        *ngFor="let team of teams$ | async"
+        class="team">
+
+        <div class="team__header">
+          <mat-icon>group</mat-icon>
+          <h2>
+            {{ team.name }}
+          </h2>
+          <button
+            mat-button
+            (click)="teamSettings(team)">
+            <mat-icon>settings</mat-icon>
+            Einstellungen
+          </button>
+          <button
+            mat-button
+            (click)="teamMembers(team)">
+            <mat-icon>person</mat-icon>
+            Mitglieder
+          </button>
+          <button
+            mat-button
+            (click)="teamBoards(team)">
+            <mat-icon>
+              view_agenda
+            </mat-icon>
+            Boards
+          </button>
+        </div>
+
+        <div class="team__description">
+          {{ team.description }}
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <mat-sidenav
+    #sidenavBoards
+    class="sidenav"
+    mode="over"
+    position="end"
+    opened="false">
+    <mat-toolbar class="sidenav__toolbar">
+      Team erstellen
+      <span class="flex-stretch"></span>
+      <button
+        mat-icon-button
+        (click)="sidenavBoards.close()">
+        <mat-icon>
+          close
+        </mat-icon>
+      </button>
+    </mat-toolbar>
+    <div class="content-wrapper">
+      <div class="sidenav__content">
+
+        <div class="wrapper">
+          <boards-team-form
+            [edit]="false"
+            (submitForm)="createTeam($event)">
+          </boards-team-form>
+        </div>
+
+      </div>
+    </div>
+  </mat-sidenav>
+
+</mat-sidenav-container>
+

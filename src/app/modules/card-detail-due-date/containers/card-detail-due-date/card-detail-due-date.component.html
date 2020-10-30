@@ -1,0 +1,64 @@
+<div class="due-date">
+
+  <div>
+    Fälligkeit
+  </div>
+
+  <div class="due-date__content">
+    <form [formGroup]="dueDateForm">
+      <div class="due-date-date">
+        <input
+          class="form-control"
+          placeholder="Datum wählen"
+          formControlName="date"
+          readonly
+          [min]="startDate"
+          [matDatepicker]="dueDatePicker"
+          (click)="openDatepicker()">
+        <input
+          class="form-control due-date-time"
+          [class.error]="!validTime"
+          placeholder="12:00"
+          formControlName="time"
+          autocomplete="off">
+
+        <button
+          mat-icon-button
+          type="button"
+          (click)="openDatepicker()">
+          <mat-icon>
+            event
+          </mat-icon>
+        </button>
+
+        <mat-datepicker
+          #dueDatePicker
+          [startAt]="startDate"
+          (selectedChanged)="onDueDateChange($event)">
+        </mat-datepicker>
+      </div>
+
+    </form>
+  </div>
+
+  <div class="due-date__action">
+    <button
+      mat-raised-button
+      color="primary"
+      type="button"
+      [disabled]="!validForm"
+      (click)="saveDueDate()">
+      Speichern
+    </button>
+    <button
+      mat-icon-button
+      (click)="resetDueDate()">
+      <mat-icon>
+        close
+      </mat-icon>
+    </button>
+  </div>
+
+</div>
+
+

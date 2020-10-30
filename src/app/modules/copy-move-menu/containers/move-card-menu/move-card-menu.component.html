@@ -1,0 +1,47 @@
+<form
+  [formGroup]="moveCardForm">
+
+  <boards-form-board-select
+    controlName="board"
+    label="Board"
+    [group]="moveCardForm"
+    [items]="boardSummaries$ | async"
+    (change)="handleBoardChange($event)">
+  </boards-form-board-select>
+
+  <div *ngIf="(selectedBoard$ | async)?.lists?.length > 0; else noMoveCard">
+
+    <boards-form-select
+      controlName="list"
+      label="Auf Liste"
+      [group]="moveCardForm"
+      [items]="(selectedBoard$ | async)?.lists"
+      (change)="handleListChange($event)">
+    </boards-form-select>
+
+    <boards-form-select
+      controlName="card"
+      label="Nach Karte"
+      [group]="moveCardForm"
+      [hasStart]="true"
+      [items]="selectedListCards$ | async">
+    </boards-form-select>
+
+  </div>
+
+  <ng-template #noMoveCard>
+    <div class="copy-error">
+      Verschieben nicht möglich.
+    </div>
+  </ng-template>
+
+  <button
+    mat-raised-button
+    color="primary"
+    type="button"
+    [disabled]="!moveCardForm.valid"
+    (click)="moveCard()">
+    Karte verschieben
+  </button>
+
+</form>

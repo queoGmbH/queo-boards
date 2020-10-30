@@ -1,0 +1,151 @@
+<mat-sidenav-container
+  class="sidenav-container"
+  [ngStyle]="themeColor">
+  <div class="board">
+    <div class="board__header">
+      <div class="title">
+        {{ (board$ | async)?.summary?.title }}
+      </div>
+      <div class="header-action">
+        <button
+          *ngIf="showBoardFilter$ | async"
+          mat-raised-button
+          class="filter-button"
+          color="primary"
+          (click)="resetBoardFilter()">
+          Filter zurücksetzen
+          <mat-icon>
+            close
+          </mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          (click)="sidenavBoard.open()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <div class="board__content">
+      <div class="lists-wrapper">
+        <div
+          #listsContent
+          class="drag-list-container">
+          <div class="lists">
+            <div
+              class="list-bag"
+              [dragula]='"list-bag"'>
+              <div
+                *ngFor="let list of (boardLists$ | async); trackBy: listTrackBy"
+                boardsDelayDragLift
+                class="list-wrapper"
+                [attr.listId]="list?.businessId"
+                [attr.positon]="list?.positionOnBoard">
+                <boards-list
+                  [list]="list"
+                  [listCount]="(board$ | async)?.lists?.length">
+                </boards-list>
+              </div>
+            </div>
+          </div>
+          <div class="lists">
+            <div class="list-wrapper">
+              <div class="create-list">
+                <div class="create-list__form">
+                  <boards-input-create
+                    inputFormGroupName="listForm"
+                    inputFormControlName="listTitle"
+                    [maxLength]="75"
+                    (create)="handleCreateList($event)"
+                    placeholder="Liste hinzufügen...">
+                  </boards-input-create>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="createListScroll" class="lists scrollHelper">
+            <div
+              class="list-wrapper">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <mat-sidenav
+    #sidenavBoard
+    position="end"
+    class="sidenav"
+    mode="over"
+    opened="false">
+
+    <mat-toolbar class="sidenav__toolbar">
+      Einstellungen
+      <span class="flex-stretch"></span>
+      <button
+        mat-icon-button
+        (click)="sidenavBoard.close()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <div class="content-wrapper">
+      <div class="sidenav__content">
+        <mat-tab-group>
+
+          <mat-tab label="Board">
+            <ng-template matTabContent>
+              <div class="wrapper">
+                <boards-update-board
+                  *ngIf="(currentBoardRoles$ | async)?.includes(BOARD_OWNER) ||
+                       (currentUser$ | async)?.roles?.includes(ROLE_ADMIN)"
+                  (updateBoardSummary)="handleUpdateBoardSummary($event)">
+                </boards-update-board>
+                <boards-board-teams>
+                  <boards-team-select
+                    *ngIf="(currentBoardRoles$ | async)?.includes(BOARD_OWNER) ||
+                         (currentUser$ | async)?.roles?.includes(ROLE_ADMIN)">
+                  </boards-team-select>
+                </boards-board-teams>
+                <boards-board-members></boards-board-members>
+                <boards-board-comments></boards-board-comments>
+              </div>
+            </ng-template>
+          </mat-tab>
+
+          <mat-tab label="Labels">
+            <ng-template matTabContent>
+              <div class="wrapper">
+                <boards-board-labels></boards-board-labels>
+              </div>
+            </ng-template>
+          </mat-tab>
+
+          <mat-tab label="Filter">
+            <ng-template matTabContent>
+              <div class="wrapper">
+                <boards-board-filter></boards-board-filter>
+              </div>
+            </ng-template>
+          </mat-tab>
+
+          <mat-tab label="Archiv">
+            <ng-template matTabContent>
+              <div class="wrapper">
+                <boards-archive-board></boards-archive-board>
+              </div>
+            </ng-template>
+          </mat-tab>
+
+        </mat-tab-group>
+
+      </div>
+    </div>
+
+  </mat-sidenav>
+
+</mat-sidenav-container>
+
+<router-outlet></router-outlet>

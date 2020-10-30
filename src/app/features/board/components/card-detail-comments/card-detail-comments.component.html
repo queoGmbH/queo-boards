@@ -1,0 +1,54 @@
+<div class="component-title">
+  Kommentare
+</div>
+
+<div class="create-card-comment">
+  <div class="create-card-comment__title">
+    Kommentar hinzufügen
+  </div>
+  <form [formGroup]="createCardDetailCommentForm">
+    <textarea
+      boardsAutoResizeTextarea
+      class="form-control"
+      formControlName="text"
+      placeholder="Schreiben Sie einen Kommentar..."
+      type="text">
+    </textarea>
+    <button
+      mat-raised-button
+      color="primary"
+      type="button"
+      [disabled]="!createCardDetailCommentForm.valid"
+      (click)="createCardDetailComment()">
+      Speichern
+    </button>
+    <button
+      class="mat-dark mat-dark--dimmed"
+      mat-icon-button
+      type="button"
+      (click)="cancelCreateCardDetailComment()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </form>
+</div>
+
+<ul
+  *ngIf="cardComments$ | async as cardComments; else commentsLoading"
+  class="card-detail-comments">
+  <li
+    *ngFor="let cardComment of cardComments"
+    id="{{ 'id-' + cardComment?.businessId }}">
+    <boards-card-detail-comment
+      [canChange]="(currentBoardRoles$ | async)?.includes(BOARD_OWNER)"
+      [cardDetailComment]="cardComment"
+      (updateCardDetailComment)="handleUpdateCardDetailComment($event)"
+      (removeCardDetailComment)="handleRemoveCardDetailComment($event)">
+    </boards-card-detail-comment>
+  </li>
+</ul>
+<ng-template #commentsLoading>
+  Kommentare werden geladen...
+</ng-template>
+
+
+

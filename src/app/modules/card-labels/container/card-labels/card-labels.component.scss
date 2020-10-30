@@ -1,0 +1,14 @@
+.card-labels {
+
+  &__labels {
+
+    .card-label {
+      color: #fff;
+      padding: 4px 8px;
+
+      + .card-label {
+        margin-top: 4px;
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+<div class="component-title">
+  Anhänge
+  <boards-card-detail-upload
+    [card]="card"
+    (fileSelect)="onFileSelect($event)">
+  </boards-card-detail-upload>
+</div>
+
+<ul class="card-detail-thumbnails">
+  <ng-container  *ngIf="(thumbnails$ | async)?.length > 0">
+    <li *ngFor="let thumbnail of thumbnails$ | async">
+      <boards-card-detail-thumbnail
+        [thumbnail]="thumbnail">
+      </boards-card-detail-thumbnail>
+    </li>
+  </ng-container>
+  <li>
+    <boards-file-drag-and-drop
+      (fileSelect)="onFileSelect($event)">
+    </boards-file-drag-and-drop>
+  </li>
+</ul>

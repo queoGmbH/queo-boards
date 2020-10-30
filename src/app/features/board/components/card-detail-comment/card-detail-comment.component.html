@@ -1,0 +1,61 @@
+<div class="card-detail-comment">
+  <div
+    class="card-detail-comment__info">
+    <span>
+      {{ cardDetailComment?.createdBy | userName }}
+    </span>
+    <span>
+      {{ cardDetailComment?.createdAt | commentDate }}
+    </span>
+  </div>
+  <div class="card-detail-comment__text">
+    <div *ngIf="!editCardDetailComment; else editComment">
+      <div [innerHtml]="comment"></div>
+    </div>
+    <ng-template #editComment>
+      <form
+        [formGroup]="cardDetailCommentForm"
+        (ngSubmit)="onUpdateCardDetailComment()">
+        <textarea
+          (boardsClickOutside)="clickedOutside($event)"
+          boardsAutoResizeTextarea
+          class="form-control"
+          formControlName="text">
+        </textarea>
+        <div class="edit-actions">
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="!formValid || !formChanged">
+            Speichern
+          </button>
+          <button
+            class="mat-dark mat-dark--dimmed"
+            mat-icon-button
+            type="button"
+            (click)="cancelUpdateCardDetailComment()">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+      </form>
+    </ng-template>
+  </div>
+  <div
+    *ngIf="!editCardDetailComment && (cardDetailComment?.isAuthor || canChange)"
+    class="card-detail-comment__details">
+    <div *ngIf="!cardDetailComment?.isDeleted">
+      <button
+        mat-button
+        (click)="toggleEditComment()"
+        (mouseup)="handleMouseUp($event)">
+        Bearbeiten
+      </button>
+      <button
+        mat-button
+        (click)="onRemoveCardDetailComment()">
+        Löschen
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="archived-item">
+  <button
+    mat-button
+    class="archived-item__select"
+    [disabled]="!canChange"
+    (click)="onRestore()">
+    <div>{{ item?.title }}</div>
+    <div class="date">
+      Archiviert: {{ item?.archivedAt | formatDate }}
+    </div>
+  </button>
+  <button
+    *ngIf="showRemove"
+    mat-icon-button
+    class="archived-item__remove"
+    [disabled]="!canChange"
+    (click)="onRemove()">
+    <mat-icon class="mat-dark">
+      delete
+    </mat-icon>
+  </button>
+</div>

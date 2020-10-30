@@ -1,0 +1,111 @@
+@import "~bootstrap/scss/mixins";
+@import "../variables";
+
+.dialog {
+
+  &__header {
+    align-items: center;
+    display: flex;
+    font-size: 20px;
+    justify-content: space-between;
+    min-height: 56px;
+  }
+
+  &__content {
+    margin-top: 16px;
+
+    .component-title {
+      align-items: center;
+      display: flex;
+      font-size: 18px;
+      font-weight: 500;
+      justify-content: space-between;
+      border-top: 8px solid #eee;
+      margin-top: 16px;
+      padding: 16px 0;
+      line-height: 40px;
+    }
+  }
+
+  &__actions {
+    border-top: 1px solid $gray-lighter;
+
+    &.mat-dialog-actions {
+      display: block;
+      margin: 0 -8px;
+      padding: 8px;
+
+      @include media-breakpoint-up(sm) {
+        margin: 0 -16px;
+        padding: 16px;
+      }
+    }
+
+    &,
+    button {
+      text-align: left;
+
+      @include media-breakpoint-up(sm) {
+        text-align: right;
+      }
+    }
+  }
+
+  &--create-board {
+
+    .dialog__header {
+      margin: 0 -8px;
+      padding: 8px;
+
+      @include media-breakpoint-up(sm) {
+        margin: 0 -16px;
+        padding: 16px;
+      }
+    }
+  }
+
+  &--card-detail {
+
+    // experimental...
+    @include media-breakpoint-down(sm) {
+      display: flex;
+      flex-direction: column;
+      // not working on ios...
+      // height: 100vh;
+
+      .dialog__content {
+        flex: 1 1 auto;
+        // max-height: none;
+      }
+    }
+
+    .dialog__header {
+      margin: 0 -8px 2px;
+      padding: 8px;
+
+      @include media-breakpoint-up(sm) {
+        margin: 0 -16px 2px;
+      }
+    }
+
+    .dialog__actions {
+      margin: 0 -8px;
+      padding: 8px;
+
+      .nav {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      @include media-breakpoint-up(sm) {
+        margin: 0 -16px;
+        padding: 16px;
+      }
+
+      button {
+        padding: 0 8px;
+        min-width: 0;
+      }
+    }
+  }
+}

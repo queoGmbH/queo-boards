@@ -1,0 +1,45 @@
+// styles for menu inside cdk-overlay-container can not be set at component level so...
+
+.mat-menu-panel {
+
+  &.theme-select {
+    max-height: 4 * 48px;
+
+    .mat-menu-content {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+
+  &.members-menu {
+    max-height: 4 * 48px;
+    overflow: hidden;
+    width: 380px;
+
+    .mat-menu-content {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+
+  &.search-results {
+    max-height: 300px;
+
+    .mat-menu-content {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+}
+
+
+.search-results,
+.member-edit,
+.list-actions-menu {
+  width: 380px;
+}
+
+.copy-menu,
+.move-menu {
+  width: 280px;
+}

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MatDialogRef, MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
-import { Observable } from 'rxjs';
+import {Observable, of} from 'rxjs';
 
 import { IConfirmDialogData, IErrorDialogData } from '../interfaces';
 
@@ -35,8 +35,9 @@ export class DialogService {
       disableClose: true
     };
 
-    this.dialogRef = this.dialog.open(ErrorDialogComponent, this.config);
-
-    return this.dialogRef.afterClosed();
+    // this.dialogRef = this.dialog.open(ErrorDialogComponent, this.config);
+    //
+    // return this.dialogRef.afterClosed();
+    return of(false);
   }
 }

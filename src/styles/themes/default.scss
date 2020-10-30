@@ -1,19 +1,10 @@
-@import 'colors';
-
-@import '~@angular/material/theming';
+@import 'boards-theme';
+@import 'aok-theme';
+@import 'fsd-theme';
 
 @include mat-core();
 
-// mat-palette($base-palette, $default: 500, $lighter: 100, $darker: 700)
-$boards-default-primary: mat-palette($boards-green);
-$boards-default-accent: mat-palette($mat-orange, A200, A100, A400);
-
-// mat-light-theme($primary, $accent, $warn: mat-palette($mat-red))
-$boards-default-theme: mat-light-theme($boards-default-primary, $boards-default-accent);
-
-.boards-default-theme {
-
-  @include angular-material-theme($boards-default-theme);
+body {
 
   .mat-dialog-content {
     @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
@@ -71,7 +62,7 @@ $boards-default-theme: mat-light-theme($boards-default-primary, $boards-default-
   }
 
   .boards-message {
-    background-color: #00aec8;
+    background-color: $brand-primary;
     color: white;
 
     button {

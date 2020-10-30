@@ -21,6 +21,8 @@ import { takeUntil, tap } from 'rxjs/operators';
 import { IState } from '@boards/store/state.interface';
 import { ShowSnackBarError } from '@boards/store/ui';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import {ConfigurationService} from "@boards/configuration";
+import {FileService} from "../../../../services/file.service";
 
 @Component({
   selector: 'boards-file-drag-and-drop',
@@ -32,6 +34,9 @@ export class FileDragAndDropComponent implements OnInit, OnDestroy {
   extensions: string[];
   files: NgxFileDropEntry[] = [];
 
+  maxFileSize = this.configService.fileUploadMaxSize;
+  maxFileSizeFormatted = this.fileService.formatBytes(<number>this.maxFileSize);
+
   @Output()
   fileSelect: EventEmitter<File> = new EventEmitter();
 
@@ -42,7 +47,9 @@ export class FileDragAndDropComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: Store<IState>,
-    private dispatcher: ActionsSubject
+    private dispatcher: ActionsSubject,
+    private configService: ConfigurationService,
+    private fileService: FileService
   ) {}
 
   ngOnInit() {
@@ -86,13 +93,13 @@ export class FileDragAndDropComponent implements OnInit, OnDestroy {
         fileEntry.file((file: File) => {
           this.filedrop.dropZoneLabel = ' ';
           this.progressSpinner$.next(true);
-          if (this.fileAllowed(file) && file.size < 5242880) {
+          if (this.fileAllowed(file) && file.size <= this.maxFileSize) {
             this.fileSelect.emit(file);
           } else {
             this.store.dispatch(
               new ShowSnackBarError({
                 message:
-                  'Error: max. 5MB, Dateien: gif, jpg, jpeg, png, pdf, doc, docx, xls, xlsx, ppt, pptx'
+                  `Error: max. ${this.maxFileSizeFormatted}, Dateien: gif, jpg, jpeg, png, pdf, doc, docx, xls, xlsx, ppt, pptx`
               })
             );
           }

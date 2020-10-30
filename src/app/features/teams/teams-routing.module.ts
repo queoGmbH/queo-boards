@@ -23,7 +23,7 @@ const teamsRoutes: Routes = [
   {
     path: ':id',
     component: TeamComponent,
-    // canActivate: [AuthNeededGuard],
+    canActivate: [AuthNeededGuard],
     resolve: [TeamResolver],
     children: [
       {

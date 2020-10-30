@@ -1,0 +1,40 @@
+@import '../colors/boards-colors';
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+// QUEO THEME
+$boards-default-primary: mat-palette($boards-blue);
+$boards-default-accent: mat-palette($mat-orange, A200, A100, A400);
+$boards-default-theme: mat-light-theme($boards-default-primary, $boards-default-accent);
+
+// FSD THEME
+$fsd-toolbar-background: #262626;
+$fsd-toolbar-color: #ffffff;
+
+.-fsd {
+  /* Use queo colors */
+  $brand-primary: $boards-primary;
+  @include angular-material-theme($boards-default-theme);
+
+  .mat-toolbar {
+    background-color: $fsd-toolbar-background;
+    color: $fsd-toolbar-color;
+
+    input {
+      border-color: $fsd-toolbar-color;
+    }
+
+    .mat-icon {
+      color: $fsd-toolbar-color;
+    }
+  }
+
+  .page {
+    background-image: url('./assets/images/fsd-background.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+    background-color: #ffffff;
+  }
+}

@@ -9,6 +9,7 @@ import { MaterialModule } from './modules/material/material.module';
 import { sharedComponents } from './components';
 import { sharedDirectives } from './directives';
 import { sharedPipes } from './pipes';
+import { sharedServices } from './services';
 
 @NgModule({
   imports: [
@@ -30,6 +31,6 @@ import { sharedPipes } from './pipes';
     ...sharedComponents,
     ...sharedPipes
   ],
-  providers: []
+  providers: [...sharedServices]
 })
 export class SharedModule {}

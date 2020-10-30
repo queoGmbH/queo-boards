@@ -10,7 +10,7 @@
   <span
     *ngIf="formError"
     class="error">
-    Max. 5MB, Dateien: {{ extensions.join(', ') }}
+    Max. {{maxFileSizeFormatted}}, Dateien: {{ extensions.join(', ') }}
     <button
       mat-icon-button
       (click)="hideFormError()">

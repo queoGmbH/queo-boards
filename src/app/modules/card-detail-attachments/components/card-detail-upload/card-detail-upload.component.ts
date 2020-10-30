@@ -14,6 +14,8 @@ import { ICard } from '../../../../core/interfaces/card.interface';
 import { ShowSnackBarError } from '@boards/store/ui';
 import { Store } from '@ngrx/store';
 import { IState } from '@boards/store/state.interface';
+import {ConfigurationService} from "@boards/configuration";
+import {FileService} from "@boards/shared/services/file.service";
 
 @Component({
   selector: 'boards-card-detail-upload',
@@ -26,6 +28,9 @@ export class CardDetailUploadComponent implements OnInit {
   formError: boolean;
   subscription: Subscription;
 
+  maxFileSize = this.configService.fileUploadMaxSize;
+  maxFileSizeFormatted = this.fileService.formatBytes(<number>this.maxFileSize);
+
   @Input()
   card: ICard;
 
@@ -35,7 +40,9 @@ export class CardDetailUploadComponent implements OnInit {
   @ViewChild('inputFile', {static: false})
   nativeInputFile: ElementRef;
 
-  constructor(private store: Store<IState>) {}
+  constructor(private store: Store<IState>,
+              private configService: ConfigurationService,
+              private fileService: FileService) {}
 
   ngOnInit() {
     this.extensions = [
@@ -61,7 +68,7 @@ export class CardDetailUploadComponent implements OnInit {
   onNativeInputFileSelect(event) {
     const file: File = (event.srcElement || event.target).files[0];
 
-    if (this.fileAllowed(file) && file.size < 5242880) {
+    if (this.fileAllowed(file) && file.size <= this.maxFileSize) {
       this.formError = false;
       this.fileSelect.emit(file);
     } else {
@@ -70,7 +77,7 @@ export class CardDetailUploadComponent implements OnInit {
       this.store.dispatch(
         new ShowSnackBarError({
           message:
-            'Error: max. 5MB, Dateien: gif, jpg, jpeg, png, pdf, doc, docx, xls, xlsx, ppt, pptx'
+            `Error: max. ${this.maxFileSizeFormatted}, Dateien: gif, jpg, jpeg, png, pdf, doc, docx, xls, xlsx, ppt, pptx`
         })
       );
     }

@@ -1,3 +1,4 @@
 {
-  "webApiBaseUrl": "YOUR QUEO-BOARDS-API URL"
+  "theme": "queo",
+  "fileUploadMaxSize": "52428800‬"
 }

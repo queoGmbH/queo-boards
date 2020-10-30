@@ -1,0 +1,15 @@
+@import '../colors/aok-colors';
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+// AOK THEME
+$aok-default-primary: mat-palette($aok-green);
+$aok-default-accent: mat-palette($aok-orange, A200, A100, A400);
+$aok-default-theme: mat-light-theme($aok-default-primary, $aok-default-accent);
+
+.-aok {
+  $brand-primary: $aok-primary;
+  @include angular-material-theme($aok-default-theme);
+}
+

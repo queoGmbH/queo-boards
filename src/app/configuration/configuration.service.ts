@@ -23,6 +23,18 @@ export class ConfigurationService {
     }
   }
 
+  get theme() {
+    if (this._config) {
+      return `${this._config.getValue().theme}`;
+    }
+  }
+
+  get fileUploadMaxSize() {
+    if (this._config) {
+      return this._config.getValue().fileUploadMaxSize;
+    }
+  }
+
   constructor(private httpClient: HttpClient) {}
 
   loadConfiguration() {
@@ -31,7 +43,10 @@ export class ConfigurationService {
         .get<Configuration>(environment.config)
         .pipe(map((response) => response))
         .subscribe((config) => {
-          this._config.next(config);
+          this._config.next({
+            ...config,
+            fileUploadMaxSize: parseInt(<string>config.fileUploadMaxSize)
+          });
           ConfigurationService.loaded = true;
           resolve();
         });

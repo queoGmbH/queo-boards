@@ -14,6 +14,7 @@ import { AuthService } from '../../services';
 import { IState } from '@boards/store/state.interface';
 import { HelpDialogComponent } from '@boards/core/components/help-dialog/help-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import {ConfigurationService} from "@boards/configuration";
 
 @Component({
   selector: 'boards-header',
@@ -26,17 +27,25 @@ export class HeaderComponent implements OnInit {
   ROLE_ADMIN = UserRole.ADMIN;
   BOARDS_ADMIN = UserRole.BOARDS_ADMIN;
 
+  theme = this.configurationService.theme;
+  screenType = window.innerWidth < 1024 ? '-mobile' : '';
+
   constructor(
     private router: Router,
     private store: Store<IState>,
     private authService: AuthService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private configurationService: ConfigurationService
   ) {}
 
   ngOnInit() {
     this.currentUser$ = this.store.pipe(
       select((state: IState) => state.users.currentUser)
     );
+  }
+
+  onResize() {
+    this.screenType = window.innerWidth < 1024 ? '-mobile' : '';
   }
 
   get isAuthAvailable() {

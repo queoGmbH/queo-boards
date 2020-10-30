@@ -112,4 +112,12 @@ export class AuthService {
     body = body.set('password', password);
     return this.apiService.rawPost(`${this.config.url}/Token`, body);
   }
+
+  requestPasswortResetLink(username: string): Observable<any> {
+    return this.apiService.post(`/user/me/passwordresetrequest`, {username});
+  }
+
+  resetPasswort({passwordResetRequestId, newPassword}): Observable<any> {
+    return this.apiService.put(`/user/me/passwordreset`, {passwordResetRequestId, newPassword});
+  }
 }

@@ -1,0 +1,14 @@
+@import '../colors/boards-colors';
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+// QUEO THEME
+$boards-default-primary: mat-palette($boards-blue);
+$boards-default-accent: mat-palette($mat-orange, A200, A100, A400);
+$boards-default-theme: mat-light-theme($boards-default-primary, $boards-default-accent);
+
+.-queo {
+  $brand-primary: $boards-primary;
+  @include angular-material-theme($boards-default-theme);
+}

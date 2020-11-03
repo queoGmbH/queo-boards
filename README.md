@@ -5,6 +5,7 @@
 with queo boards you can manage easily your things to do.
 
 This repository is just the frontend from the entire project and needs the queo-boards-api to work.
+
 Link to the Backend: https://github.com/queoGmbH/queo-boards-api
 
 ## Requirements
